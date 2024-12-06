@@ -1,17 +1,14 @@
-<<<<<<< HEAD
-
-=======
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { DropdownComponent } from "../../lib/components/dropdown/dropdown.component";
+import { DropdownComponent } from '../../lib/components/dropdown/dropdown.component';
+import { SearchComponent } from '../../lib/components/search/search.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, DropdownComponent],
+  imports: [RouterOutlet, DropdownComponent, SearchComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'documentation';
 }
->>>>>>> f20e554f2e5c42ff9b60b364f247878c83728c05
