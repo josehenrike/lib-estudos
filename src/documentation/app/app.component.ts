@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DropdownComponent } from "../../lib/components/dropdown/dropdown.component";
@@ -14,4 +11,3 @@ import { DropdownComponent } from "../../lib/components/dropdown/dropdown.compon
 export class AppComponent {
   title = 'documentation';
 }
->>>>>>> f20e554f2e5c42ff9b60b364f247878c83728c05
