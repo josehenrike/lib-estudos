@@ -4,6 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
 import { ProductService } from '../../services/product.service';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -15,7 +16,7 @@ interface Product {
 @Component({
   selector: 'app-dropdown',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule, ReactiveFormsModule, HttpClientModule, CommonModule],
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule, ReactiveFormsModule, HttpClientModule, CommonModule, MatIconModule],
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss',
   providers: [ProductService]
@@ -32,5 +33,9 @@ export class DropdownComponent implements OnInit {
     this.productService.getProducts().subscribe(data => {
       this.products = data;
     });
+  }
+
+  clearSelection() {
+    this.prodControl.reset(); // Limpa o valor selecionado
   }
 }
