@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DropdownComponent } from './dropdown.component';
 
 describe('DropdownComponent', () => {
@@ -10,7 +9,7 @@ describe('DropdownComponent', () => {
     await TestBed.configureTestingModule({
       imports: [DropdownComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DropdownComponent);
     component = fixture.componentInstance;
