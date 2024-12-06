@@ -1,1 +1,13 @@
-<p>dropdown works!</p>
+<mat-form-field class="custom-field" appearance="fill">
+    <mat-label>Selecione o produto</mat-label>
+    <mat-select [formControl]="prodControl" required>
+        @for (prod of products; track prod) {
+        <mat-option [value]="prod.id">
+            {{ prod.name }}
+        </mat-option>
+        }
+    </mat-select>
+    @if (prodControl.hasError('required')) {
+    <mat-error>Selecione um produto</mat-error>
+    }
+</mat-form-field>
