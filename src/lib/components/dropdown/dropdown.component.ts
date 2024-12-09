@@ -48,7 +48,8 @@ export class DropdownComponent implements OnInit {
     });
   }
 
-  clearSelection() {
-    this.prodControl.reset(); // Limpa o valor selecionado
+  clearSelection(event: MouseEvent) {
+    event.stopPropagation();
+    this.prodControl.setValue(null);
   }
 }
