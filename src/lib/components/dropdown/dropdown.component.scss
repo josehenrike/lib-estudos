@@ -1,3 +1,9 @@
+.form-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .custom-field {
     width: 400px;
     height: auto;
@@ -9,6 +15,12 @@
 
 .custom-field.mat-form-field {
     font-size: 16px;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 button[mat-icon-button] {
@@ -27,21 +39,7 @@ button[mat-icon-button]:hover {
     transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.add-button {
-    display: flex;
-    color: gray;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.clear-button:hover {
-    color: #d32f2f;
-    transform: scale(1.1);
-}
-
-.add-button:hover {
+.button-container button:hover {
     color: #d32f2f;
     transform: scale(1.1);
 }
