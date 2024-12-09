@@ -1,24 +1,30 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AsyncPipe } from '@angular/common';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { map, Observable, startWith } from 'rxjs';
-import { MatBadgeModule } from '@angular/material/badge';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { OpenSearchComponent } from '../open-search/open-search.component';
+import { ProductService } from '../../services/product.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatOptionModule } from '@angular/material/core';
+import { MatListModule } from '@angular/material/list';
+import { CommonModule } from '@angular/common';
+import {
+  debounceTime,
+  filter,
+  map,
+  startWith,
+  switchMap,
+} from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
-export interface User {
+export interface Product {
   name: string;
+  id: number;
 }
+
 @Component({
   selector: 'app-search',
   standalone: true,
@@ -26,55 +32,50 @@ export interface User {
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatAutocompleteModule,
     ReactiveFormsModule,
-    AsyncPipe,
-    MatBadgeModule,
-    MatIconModule,
     MatButtonModule,
+    MatIconModule,
+    MatAutocompleteModule,
+    MatOptionModule,
+    MatListModule,
+    CommonModule,
   ],
   templateUrl: './search.component.html',
-  styleUrl: './search.component.scss',
+  styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
   produtoPesquisa: string = '';
-  db: any[] = [];
+  products: Product[] = [];
   searchControl = new FormControl('');
-  myControl = new FormControl<string | User>('');
-  options: User[] = [
-    { name: 'Gasolina' },
-    { name: 'Etanol' },
-    { name: 'Diesel' },
-  ];
-  filteredOptions!: Observable<User[]>;
+  filteredProducts$!: Observable<Product[]>;
+
+  readonly search = inject(MatDialog);
+
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.options.slice();
-      })
-    );
-  }
-  readonly search = inject(MatDialog);
-  displayFn(user: User): string {
-    return user && user.name ? user.name : '';
-  }
-  private _filter(name: string): User[] {
-    const filterValue = name.toLowerCase();
+    this.carregarProdutos();
 
-    return this.options.filter((option) =>
-      option.name.toLowerCase().includes(filterValue)
+    this.filteredProducts$ = this.searchControl.valueChanges.pipe(
+      startWith(''), // Começa com uma string vazia
+      debounceTime(300), // Espera 300ms após o usuário digitar
+      map((searchTerm) => this.filterProducts(searchTerm || '')) // Aplica o filtro
     );
   }
-  hidden = false;
-  toggleBadgeVisibility() {
-    this.hidden = !this.hidden;
+  carregarProdutos() {
+    this.productService.getProducts().subscribe((data) => {
+      console.log(data);
+      this.products = data;
+    });
+  }
+  filterProducts(searchTerm: string): Product[] {
+    const lowerCaseTerm = searchTerm.toLowerCase();
+    return this.products.filter((product) =>
+      product.name.toLowerCase().includes(lowerCaseTerm)
+    );
   }
   openSearch() {
     const searchRef = this.search.open(OpenSearchComponent);
-
     searchRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });

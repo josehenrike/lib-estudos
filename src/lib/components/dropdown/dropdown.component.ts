@@ -6,7 +6,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { ProductService } from '../../services/product.service';
-import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 interface Product {
   id: number;
@@ -16,21 +21,29 @@ interface Product {
 @Component({
   selector: 'app-dropdown',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule, ReactiveFormsModule, HttpClientModule, CommonModule, MatIconModule],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    CommonModule,
+    MatIconModule,
+  ],
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss',
-  providers: [ProductService]
+  providers: [ProductService],
 })
-
 export class DropdownComponent implements OnInit {
   products: any[] = [];
   prodControl = new FormControl<Product | null>(null, Validators.required);
   selectFormControl = new FormControl(1, Validators.required);
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(data => {
+    this.productService.getProducts().subscribe((data) => {
       this.products = data;
     });
   }

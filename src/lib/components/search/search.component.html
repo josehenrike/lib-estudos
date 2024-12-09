@@ -1,15 +1,24 @@
 <form class="searchForm">
   <mat-form-field class="searchField">
-
     <mat-label>Search</mat-label>
     <div class="example-form">
-      <input matInput [formControl]="searchControl" placeholder="Search">
-      <a class="searchIcon" (click)="openSearch()"><mat-icon>search</mat-icon></a>
+      <input matInput placeholder="Digite o nome do produto" [formControl]="searchControl" />
+      <a class="searchIcon" (click)="openSearch()">
+        <mat-icon>search</mat-icon>
+      </a>
     </div>
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      @for (option of filteredOptions | async; track option) {
-      <mat-option [value]="option"> {{option.name}}</mat-option>
-      }
-    </mat-autocomplete>
   </mat-form-field>
 </form>
+
+<mat-list *ngIf="filteredProducts$ | async as filteredProducts">
+  <h3 *ngIf="filteredProducts.length > 0">Produtos encontrados:</h3>
+  <h2 *ngIf="filteredProducts.length > 0; else noProducts">
+    <mat-list-item *ngFor="let product of filteredProducts">
+      <a>{{ product.name }}</a>
+    </mat-list-item>
+  </h2>
+</mat-list>
+
+<ng-template #noProducts>
+  <p>Nenhum produto encontrado.</p>
+</ng-template>
