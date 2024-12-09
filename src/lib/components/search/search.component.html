@@ -9,16 +9,3 @@
     </div>
   </mat-form-field>
 </form>
-
-<mat-list *ngIf="filteredProducts$ | async as filteredProducts">
-  <h3 *ngIf="filteredProducts.length > 0">Produtos encontrados:</h3>
-  <h2 *ngIf="filteredProducts.length > 0; else noProducts">
-    <mat-list-item *ngFor="let product of filteredProducts">
-      <a>{{ product.name }}</a>
-    </mat-list-item>
-  </h2>
-</mat-list>
-
-<ng-template #noProducts>
-  <p>Nenhum produto encontrado.</p>
-</ng-template>

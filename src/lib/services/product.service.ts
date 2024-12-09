@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ProductService {
+  [x: string]: any;
   private apiUrl = 'http://localhost:3000/products';
 
   constructor(private http: HttpClient) {}
@@ -13,9 +14,9 @@ export class ProductService {
   getProducts(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
-  pesquisarProduto(nome: string): Observable<any[]> {
+  pesquisarProduto(name: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}`, {
-      params: { nome },
+      params: { name },
     });
   }
 }

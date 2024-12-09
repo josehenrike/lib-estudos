@@ -44,7 +44,6 @@ export interface Product {
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-  produtoPesquisa: string = '';
   products: Product[] = [];
   searchControl = new FormControl('');
   filteredProducts$!: Observable<Product[]>;
@@ -54,7 +53,7 @@ export class SearchComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    this.carregarProdutos();
+    this.loadProducts();
 
     this.filteredProducts$ = this.searchControl.valueChanges.pipe(
       startWith(''), // Começa com uma string vazia
@@ -62,7 +61,7 @@ export class SearchComponent implements OnInit {
       map((searchTerm) => this.filterProducts(searchTerm || '')) // Aplica o filtro
     );
   }
-  carregarProdutos() {
+  loadProducts() {
     this.productService.getProducts().subscribe((data) => {
       console.log(data);
       this.products = data;

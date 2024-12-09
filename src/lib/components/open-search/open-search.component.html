@@ -1,8 +1,22 @@
 <div>
-  <h2 mat-dialog-title>Install Angular</h2>
-  <mat-dialog-content class="open-search-column">
-  </mat-dialog-content>
-  <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
-  </mat-dialog-actions>
+  <h3>Produtos Cadastrados</h3>
 </div>
+<input matInput placeholder="Digite o nome do produto" [formControl]="searchControl" />
+
+
+<table *ngIf="filteredProducts$ | async as filteredProducts">
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Nome</th>
+    </tr>
+  </thead>
+
+  <a *ngIf="filteredProducts.length > 0"></a>
+  <tbody>
+    <tr *ngFor="let product of filteredProducts">
+      <td>{{product.id}}</td>
+      <td>{{ product.name }}</td>
+    </tr>
+  <tbody>
+</table>
