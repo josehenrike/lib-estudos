@@ -1,10 +1,15 @@
+// Angular
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+// Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { MatIconModule } from '@angular/material/icon';
+
+// Local
+import { DropdownDialogComponent } from './dropdowndialog/dropdowndialog.component';
 import { ProductService } from '../../services/product.service';
 import {
   FormControl,
@@ -12,6 +17,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
 
 interface Product {
   id: number;
@@ -40,11 +47,27 @@ export class DropdownComponent implements OnInit {
   prodControl = new FormControl<Product | null>(null, Validators.required);
   selectFormControl = new FormControl(1, Validators.required);
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((data) => {
       this.products = data;
+    });
+  }
+
+  addOrUpdate(): void {
+    const dialogRef = this.dialog.open(DropdownDialogComponent, {
+      data: { id: this.prodControl?.value ?? 0 },
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == true) {
+      } else {
+      }
     });
   }
 

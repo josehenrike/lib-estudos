@@ -2,6 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+interface Product {
+  id: number;
+  name: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
