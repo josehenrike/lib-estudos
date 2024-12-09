@@ -8,7 +8,8 @@
         }
     </mat-select>
 
-    <button mat-icon-button matSuffix (click)="clearSelection()" *ngIf="prodControl.value">
+    <button mat-icon-button matSuffix class="clear-button" (click)="clearSelection($event)"
+        aria-label="Clear selection">
         <mat-icon>clear</mat-icon>
     </button>
 
