@@ -6,6 +6,7 @@ import { ProductService } from '../../services/product.service';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, map, Observable, startWith } from 'rxjs';
 import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
 
 export interface Product {
   name: string;
@@ -20,6 +21,7 @@ export interface Product {
     FormsModule,
     MatListModule,
     ReactiveFormsModule,
+    MatIconModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './open-search.component.html',

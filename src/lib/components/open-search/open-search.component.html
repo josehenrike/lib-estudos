@@ -1,22 +1,34 @@
-<div>
-  <h3>Produtos Cadastrados</h3>
+<div class="table-contrainer">
+
+
+  <div class="table-header">
+    <h3>Produtos Cadastrados</h3>
+    <div class="buttons">
+      <button class="close">
+        <mat-icon>close</mat-icon>
+      </button>
+      <button class="chech"><mat-icon>check</mat-icon></button>
+    </div>
+  </div>
+
+
+  <input class="search" matInput placeholder="Digite o nome do produto" [formControl]="searchControl" />
+
+
+  <table class="table-list" *ngIf="filteredProducts$ | async as filteredProducts">
+    <thead>
+      <tr>
+        <th>Codigo</th>
+        <th>Nome</th>
+      </tr>
+    </thead>
+
+    <a *ngIf="filteredProducts.length > 0"></a>
+    <tbody>
+      <tr *ngFor="let product of filteredProducts">
+        <td>{{product.id}}</td>
+        <td>{{ product.name }}</td>
+      </tr>
+    <tbody>
+  </table>
 </div>
-<input matInput placeholder="Digite o nome do produto" [formControl]="searchControl" />
-
-
-<table *ngIf="filteredProducts$ | async as filteredProducts">
-  <thead>
-    <tr>
-      <th>Codigo</th>
-      <th>Nome</th>
-    </tr>
-  </thead>
-
-  <a *ngIf="filteredProducts.length > 0"></a>
-  <tbody>
-    <tr *ngFor="let product of filteredProducts">
-      <td>{{product.id}}</td>
-      <td>{{ product.name }}</td>
-    </tr>
-  <tbody>
-</table>

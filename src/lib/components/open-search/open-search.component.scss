@@ -22,7 +22,6 @@ td {
   border: 1px solid rgb(160 160 160);
   padding: 8px 10px;
 }
-
 td:last-of-type {
   text-align: center;
 }
@@ -37,4 +36,46 @@ tfoot th {
 
 tfoot td {
   font-weight: bold;
+}
+.table-contrainer {
+  width: 480px;
+  height: 250px;
+  padding: 20px;
+}
+.table-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  width: 500px;
+  height: auto;
+}
+.table-list {
+  width: 480px;
+  height: 100px;
+}
+.search {
+  width: 472px;
+}
+html {
+  --mat-sys-corner-extra-large: 5px !important;
+}
+.buttons {
+  justify-content: end;
+  display: flex;
+  gap: 5px;
+  margin-right: 3px;
+}
+.close {
+  background-color: red;
+  border: none;
+  color: white;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.chech {
+  background-color: green;
+  border: none;
+  color: white;
+  margin: 4px 2px;
+  cursor: pointer;
 }
