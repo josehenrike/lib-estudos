@@ -1,9 +1,25 @@
-<h2 mat-dialog-title>Id é {{data.id}}</h2>
-<mat-dialog-content>
-    <p>Teste 123....</p>
+@if (data.id == 0) {
+<h2 mat-dialog-title>Adicionar Produto</h2>
 
+<mat-dialog-content>
+    <p>Aqui irá adicionar o Produto</p>
 </mat-dialog-content>
+
 <mat-dialog-actions>
-    <button mat-button (click)="clickClosed()">Fechar</button>
-    <button mat-button (click)="clickOk()" cdkFocusInitial>Ok</button>
+    <button mat-button (click)="clickClosed()">Cancelar</button>
+    <button mat-button (click)="clickOk()" cdkFocusInitial>Confirmar</button>
 </mat-dialog-actions>
+}
+
+@if (data.id > 0) {
+<h2 mat-dialog-title>Editar Produto</h2>
+
+<mat-dialog-content>
+    <p>Aqui irá editar o Produto</p>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button (click)="clickClosed()">Cancelar</button>
+    <button mat-button (click)="clickOk()" cdkFocusInitial>Confirmar</button>
+</mat-dialog-actions>
+}

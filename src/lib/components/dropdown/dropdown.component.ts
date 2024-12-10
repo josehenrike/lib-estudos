@@ -50,7 +50,7 @@ export class DropdownComponent implements OnInit {
   constructor(
     private productService: ProductService,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((data) => {
@@ -61,7 +61,7 @@ export class DropdownComponent implements OnInit {
   addOrUpdate(): void {
     const dialogRef = this.dialog.open(DropdownDialogComponent, {
       data: { id: this.prodControl?.value ?? 0 },
-      width: '250px',
+      width: '700px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
