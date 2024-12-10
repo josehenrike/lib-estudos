@@ -1,12 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ProductService } from '../../services/product.service';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, map, Observable, startWith } from 'rxjs';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { DialogRef } from '@angular/cdk/dialog';
 
 export interface Product {
   name: string;
@@ -31,6 +37,7 @@ export class OpenSearchComponent implements OnInit {
   products: Product[] = [];
   filteredProducts$!: Observable<Product[]>;
   searchControl = new FormControl('');
+  readonly dialogRef = inject(MatDialogRef<OpenSearchComponent>);
 
   constructor(private productService: ProductService) {}
 
@@ -54,5 +61,9 @@ export class OpenSearchComponent implements OnInit {
       console.log(data);
       this.products = data;
     });
+  }
+
+  closeSearch() {
+    this.dialogRef.close();
   }
 }
