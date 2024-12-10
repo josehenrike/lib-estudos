@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
     ],
 })
 export class DropdownDialogComponent {
+    novoProduto: any;
 
     //#region Lifecycle Hooks
 
