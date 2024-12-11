@@ -2,8 +2,13 @@
 <h2 mat-dialog-title>Adicionar Produto</h2>
 
 <mat-dialog-content>
-    <p>Aqui irá adicionar o Produto</p>
+    <p>Qual produto deseja adicionar?</p>
 </mat-dialog-content>
+
+<mat-form-field class="add-product">
+    <mat-label>Ex.: Gasolina</mat-label>
+    <input matInput>
+</mat-form-field>
 
 <mat-dialog-actions>
     <button mat-button (click)="clickClosed()">Cancelar</button>
@@ -15,8 +20,13 @@
 <h2 mat-dialog-title>Editar Produto</h2>
 
 <mat-dialog-content>
-    <p>Aqui irá editar o Produto</p>
+    <p>Você está editando o produto: {{ data.name }}</p>
 </mat-dialog-content>
+
+<mat-form-field class="edit-product">
+    <mat-label>Altere o nome do produto</mat-label>
+    <input matInput>
+</mat-form-field>
 
 <mat-dialog-actions>
     <button mat-button (click)="clickClosed()">Cancelar</button>
