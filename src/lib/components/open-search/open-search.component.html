@@ -7,28 +7,15 @@
       <button (click)="closeSearch()" class="close">
         <mat-icon>close</mat-icon>
       </button>
-      <button class=" chech"><mat-icon>check</mat-icon></button>
+      <button class=" check" (click)="confirmSelection()"><mat-icon>check</mat-icon></button>
     </div>
   </div>
-
-
   <input class="search" matInput placeholder="Digite o nome do produto" [formControl]="searchControl" />
 
 
-  <table class="table-list" *ngIf="filteredProducts$ | async as filteredProducts">
-    <thead>
-      <tr>
-        <th>Codigo</th>
-        <th>Nome</th>
-      </tr>
-    </thead>
-
-    <a *ngIf="filteredProducts.length > 0"></a>
-    <tbody>
-      <tr *ngFor="let product of filteredProducts">
-        <td>{{product.id}}</td>
-        <td>{{ product.name }}</td>
-      </tr>
-    <tbody>
-  </table>
+  <mat-selection-list [multiple]="false" [formControl]="selectionControl" class="product-list">
+    <mat-list-option *ngFor="let product of filteredProducts$ | async" [value]="product">
+      {{ product.id }}) {{ product.name }}
+    </mat-list-option>
+  </mat-selection-list>
 </div>

@@ -75,8 +75,8 @@ export class SearchComponent implements OnInit {
   }
   openSearch() {
     const searchRef = this.search.open(OpenSearchComponent);
-    searchRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+    searchRef.afterClosed().subscribe((result: Product | null) => {
+      console.log('Dialog result:', result);
     });
   }
 }
