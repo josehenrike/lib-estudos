@@ -59,8 +59,14 @@ export class DropdownComponent implements OnInit {
   }
 
   addOrUpdate(): void {
+    const selectedId = this.prodControl?.value ?? 0;
+    const selectedProduct = this.products.find(product => product.id === selectedId);
+
     const dialogRef = this.dialog.open(DropdownDialogComponent, {
-      data: { id: this.prodControl?.value ?? 0 },
+      data: {
+        id: selectedId,
+        name: selectedProduct?.name ?? '',
+      },
       width: '700px',
     });
 
