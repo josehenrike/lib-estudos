@@ -50,7 +50,7 @@ export class DropdownComponent implements OnInit {
   constructor(
     private productService: ProductService,
     public dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((data) => {
@@ -60,7 +60,9 @@ export class DropdownComponent implements OnInit {
 
   addOrUpdate(): void {
     const selectedId = this.prodControl?.value ?? 0;
-    const selectedProduct = this.products.find(product => product.id === selectedId);
+    const selectedProduct = this.products.find(
+      (product) => product.id === selectedId
+    );
 
     const dialogRef = this.dialog.open(DropdownDialogComponent, {
       data: {
@@ -72,9 +74,7 @@ export class DropdownComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result == true) {
-
       } else {
-
       }
     });
   }

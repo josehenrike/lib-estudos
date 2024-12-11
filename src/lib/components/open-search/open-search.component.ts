@@ -37,7 +37,7 @@ export class OpenSearchComponent implements OnInit {
   filteredProducts$!: Observable<Product[]>;
   searchControl = new FormControl('');
   readonly dialogRef = inject(MatDialogRef<OpenSearchComponent>);
-  selectionControl = new FormControl(null);
+  selectionControl = new FormControl();
 
   constructor(private productService: ProductService) {}
 
@@ -66,8 +66,7 @@ export class OpenSearchComponent implements OnInit {
   closeSearch() {
     this.dialogRef.close();
   }
-
-  confirmSelection() {
+  checkSelection() {
     const selectedProduct = this.selectionControl.value;
     if (selectedProduct) {
       this.dialogRef.close(selectedProduct);

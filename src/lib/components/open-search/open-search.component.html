@@ -1,13 +1,11 @@
 <div class="table-contrainer">
-
-
   <div class="table-header">
     <h3>Produtos Cadastrados</h3>
     <div class="buttons">
       <button (click)="closeSearch()" class="close">
         <mat-icon>close</mat-icon>
       </button>
-      <button class=" check" (click)="confirmSelection()"><mat-icon>check</mat-icon></button>
+      <button class=" check" (click)="checkSelection()"><mat-icon>check</mat-icon></button>
     </div>
   </div>
   <input class="search" matInput placeholder="Digite o nome do produto" [formControl]="searchControl" />
@@ -15,7 +13,7 @@
 
   <mat-selection-list [multiple]="false" [formControl]="selectionControl" class="product-list">
     <mat-list-option *ngFor="let product of filteredProducts$ | async" [value]="product">
-      {{ product.id }}) {{ product.name }}
+      {{ product.id }} - {{ product.name }}
     </mat-list-option>
   </mat-selection-list>
 </div>
