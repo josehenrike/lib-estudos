@@ -8,16 +8,23 @@ import {
     MatDialogActions,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
     selector: 'dropdowndialog',
     standalone: true,
     templateUrl: 'dropdowndialog.component.html',
+    styleUrl: 'dropdowndialog.component.scss',
     imports: [
         MatDialogActions,
         MatButtonModule,
         MatDialogContent,
-        MatDialogTitle
+        MatDialogTitle,
+        MatSelectModule,
+        MatInputModule,
+        MatFormFieldModule
     ],
 })
 export class DropdownDialogComponent {
