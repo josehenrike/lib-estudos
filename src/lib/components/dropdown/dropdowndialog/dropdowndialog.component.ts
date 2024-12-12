@@ -22,7 +22,6 @@ import { Product } from '../../open-search/open-search.component';
     imports: [
         MatDialogActions,
         MatButtonModule,
-        MatDialogContent,
         MatDialogTitle,
         MatSelectModule,
         MatInputModule,

@@ -19,6 +19,7 @@ import {
   switchMap,
 } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { ReadVResult } from 'fs';
 
 export interface Product {
   name: string;
@@ -45,8 +46,9 @@ export interface Product {
 })
 export class SearchComponent implements OnInit {
   products: Product[] = [];
-  searchControl = new FormControl('');
+  searchControl = new FormControl();
   filteredProducts$!: Observable<Product[]>;
+  selectedProduct: Product | null = null;
 
   readonly search = inject(MatDialog);
 
@@ -56,27 +58,30 @@ export class SearchComponent implements OnInit {
     this.loadProducts();
 
     this.filteredProducts$ = this.searchControl.valueChanges.pipe(
-      startWith(''), // Começa com uma string vazia
-      debounceTime(300), // Espera 300ms após o usuário digitar
-      map((searchTerm) => this.filterProducts(searchTerm || '')) // Aplica o filtro
+      startWith(''),
+      debounceTime(300),
+      map((searchTerm) => this.filterProducts(searchTerm || ''))
     );
   }
   loadProducts() {
     this.productService.getProducts().subscribe((data) => {
-      console.log(data);
       this.products = data;
     });
   }
   filterProducts(searchTerm: string): Product[] {
     const lowerCaseTerm = searchTerm.toLowerCase();
-    return this.products.filter((product) =>
-      product.name.toLowerCase().includes(lowerCaseTerm)
-    );
+    return this.products.filter((product) => {
+      product.name.toLowerCase().includes(lowerCaseTerm);
+    });
   }
+
   openSearch() {
     const searchRef = this.search.open(OpenSearchComponent);
-    searchRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+    searchRef.afterClosed().subscribe((result: Product[]) => {
+      if (result) {
+        this.searchControl.setValue(result[0].name);
+        console.log('Dialog result:', result);
+      }
     });
   }
 }

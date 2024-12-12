@@ -12,7 +12,6 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, map, Observable, startWith } from 'rxjs';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { DialogRef } from '@angular/cdk/dialog';
 
 export interface Product {
   name: string;
@@ -38,6 +37,7 @@ export class OpenSearchComponent implements OnInit {
   filteredProducts$!: Observable<Product[]>;
   searchControl = new FormControl('');
   readonly dialogRef = inject(MatDialogRef<OpenSearchComponent>);
+  selectionControl = new FormControl();
 
   constructor(private productService: ProductService) {}
 
@@ -45,9 +45,9 @@ export class OpenSearchComponent implements OnInit {
     this.loadProducts();
 
     this.filteredProducts$ = this.searchControl.valueChanges.pipe(
-      startWith(''), // Começa com uma string vazia
-      debounceTime(300), // Espera 300ms após o usuário digitar
-      map((searchTerm) => this.filterProducts(searchTerm || '')) // Aplica o filtro
+      startWith(''),
+      debounceTime(300),
+      map((searchTerm) => this.filterProducts(searchTerm || ''))
     );
   }
   filterProducts(searchTerm: string): Product[] {
@@ -65,5 +65,11 @@ export class OpenSearchComponent implements OnInit {
 
   closeSearch() {
     this.dialogRef.close();
+  }
+  checkSelection() {
+    const selectedProduct = this.selectionControl.value;
+    if (selectedProduct) {
+      this.dialogRef.close(selectedProduct);
+    }
   }
 }
