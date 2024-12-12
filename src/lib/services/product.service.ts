@@ -11,7 +11,6 @@ interface Product {
   providedIn: 'root',
 })
 export class ProductService {
-  [x: string]: any;
   private apiUrl = 'http://localhost:3000/products';
 
   constructor(private http: HttpClient) { }
@@ -20,12 +19,12 @@ export class ProductService {
     return this.http.get<any[]>(this.apiUrl);
   }
 
-  updateProduct(id: number, name: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, name);
+  addProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.apiUrl, product);
   }
 
-  createProduct(name: any): Observable<any> {
-    return this.http.post(this.apiUrl, name);
+  updateProduct(product: Product): Observable<Product> {
+    return this.http.put<Product>(`${this.apiUrl}/${product.id}`, product);
   }
 
   pesquisarProduto(name: string): Observable<any[]> {

@@ -1,9 +1,10 @@
 app-open-search {
   .table-contrainer {
-    width: 480px;
-    height: 250px;
+    width: 500px;
+    height: 300px;
     padding: 20px;
   }
+
   .table-header {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -13,14 +14,16 @@ app-open-search {
   }
 
   .search {
-    width: 472px;
+    width: 492px;
   }
+
   .buttons {
     justify-content: end;
     display: flex;
     gap: 5px;
     margin-right: 3px;
   }
+
   .close {
     background-color: red;
     border: none;
@@ -28,6 +31,7 @@ app-open-search {
     margin: 4px 2px;
     cursor: pointer;
   }
+
   .check {
     background-color: green;
     border: none;
@@ -35,6 +39,7 @@ app-open-search {
     margin: 4px 2px;
     cursor: pointer;
   }
+
   .product-list {
     border: solid 1px;
   }

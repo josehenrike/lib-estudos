@@ -75,9 +75,16 @@ export class DropdownComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         if (result.id > 0) {
-          // 'UPDATE PRODUTO SET NAME = 'result.name' WHERE ID = 'result.id';
+          this.productService.updateProduct(result).subscribe(() => {
+            const index = this.products.findIndex((p) => p.id === result.id);
+            if (index !== -1) {
+              this.products[index] = result;
+            }
+          });
         } else {
-          // 'INSERT INTO PRODUTO (NAME) VALUES ('result.name');';
+          this.productService.addProduct(result).subscribe((newProduct) => {
+            this.products.push(newProduct);
+          });
         }
       }
     });
