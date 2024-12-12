@@ -4,6 +4,7 @@ import {
   Component,
   inject,
   OnInit,
+  ViewEncapsulation,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -31,6 +32,7 @@ export interface Product {
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './open-search.component.html',
   styleUrl: './open-search.component.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class OpenSearchComponent implements OnInit {
   products: Product[] = [];

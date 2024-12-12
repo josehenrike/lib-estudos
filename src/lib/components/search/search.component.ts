@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -11,15 +11,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
-import {
-  debounceTime,
-  filter,
-  map,
-  startWith,
-  switchMap,
-} from 'rxjs/operators';
+import { debounceTime, map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { ReadVResult } from 'fs';
 
 export interface Product {
   name: string;
@@ -43,6 +36,7 @@ export interface Product {
   ],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SearchComponent implements OnInit {
   products: Product[] = [];
