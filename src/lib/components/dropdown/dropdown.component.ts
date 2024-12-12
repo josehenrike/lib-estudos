@@ -50,7 +50,7 @@ export class DropdownComponent implements OnInit {
   constructor(
     private productService: ProductService,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((data) => {
@@ -73,8 +73,12 @@ export class DropdownComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result == true) {
-      } else {
+      if (result) {
+        if (result.id > 0) {
+          // 'UPDATE PRODUTO SET NAME = 'result.name' WHERE ID = 'result.id';
+        } else {
+          // 'INSERT INTO PRODUTO (NAME) VALUES ('result.name');';
+        }
       }
     });
   }

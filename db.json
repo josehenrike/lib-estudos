@@ -1,15 +1,15 @@
 {
   "products": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Gasolina"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Etanol"
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Diesel"
     }
   ]

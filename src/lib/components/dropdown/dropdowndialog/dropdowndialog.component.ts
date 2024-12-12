@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import {
     MatDialog,
     MAT_DIALOG_DATA,
@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Product } from '../../open-search/open-search.component';
 
 @Component({
     selector: 'dropdowndialog',
@@ -20,20 +22,23 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     imports: [
         MatDialogActions,
         MatButtonModule,
-        MatDialogContent,
         MatDialogTitle,
         MatSelectModule,
         MatInputModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        FormsModule
     ],
 })
 export class DropdownDialogComponent {
-    novoProduto: any;
+
 
     //#region Lifecycle Hooks
 
-    public onInit(): void {
+    public ngOnInit(): void {
         this.idReceive = this.data.id;
+
+        this.formData.patchValue(this.data);
     }
 
     //#endregion
@@ -49,12 +54,17 @@ export class DropdownDialogComponent {
     }
 
     public clickOk(): void {
-        this.dialogRef.close(true);
+        this.dialogRef.close(this.formData.getRawValue());
     }
 
     //#endregion
 
     //#region Properties
+
+    public formData = new FormGroup({
+        id: new FormControl(''),
+        name: new FormControl('')
+    });
 
     public idReceive: number = 0;
 

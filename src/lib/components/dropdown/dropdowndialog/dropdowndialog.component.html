@@ -1,35 +1,20 @@
-@if (data.id == 0) {
-<h2 mat-dialog-title>Adicionar Produto</h2>
+<form [formGroup]="formData">
 
-<mat-dialog-content>
-    <p>Qual produto deseja adicionar?</p>
-</mat-dialog-content>
+    @if (data.id == 0) {
+    <h2 mat-dialog-title>Adicionar Produto</h2>
+    }
+    @if(data.id > 0) {
+    <h2 mat-dialog-title>Editar Produto</h2>
+    }
 
-<mat-form-field class="add-product">
-    <mat-label>Ex.: Gasolina</mat-label>
-    <input matInput>
-</mat-form-field>
+    <mat-form-field class="edit-product">
+        <mat-label>Produto</mat-label>
+        <input formControlName="name" matInput>
+    </mat-form-field>
 
-<mat-dialog-actions>
-    <button mat-button (click)="clickClosed()">Cancelar</button>
-    <button mat-button (click)="clickOk()" cdkFocusInitial>Confirmar</button>
-</mat-dialog-actions>
-}
+    <mat-dialog-actions>
+        <button mat-button (click)="clickClosed()">Cancelar</button>
+        <button mat-button (click)="clickOk()" cdkFocusInitial>Confirmar</button>
+    </mat-dialog-actions>
 
-@if (data.id > 0) {
-<h2 mat-dialog-title>Editar Produto</h2>
-
-<mat-dialog-content>
-    <p>Você está editando o produto: {{ data.name }}</p>
-</mat-dialog-content>
-
-<mat-form-field class="edit-product">
-    <mat-label>Altere o nome do produto</mat-label>
-    <input matInput>
-</mat-form-field>
-
-<mat-dialog-actions>
-    <button mat-button (click)="clickClosed()">Cancelar</button>
-    <button mat-button (click)="clickOk()" cdkFocusInitial>Confirmar</button>
-</mat-dialog-actions>
-}
+</form>
