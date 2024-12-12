@@ -11,8 +11,8 @@
   <input class="search" matInput placeholder="Digite o nome do produto" [formControl]="searchControl" />
 
 
-  <mat-selection-list [multiple]="false" [formControl]="selectionControl" class="product-list">
-    <mat-list-option *ngFor="let product of filteredProducts$ | async" [value]="product">
+  <mat-selection-list [multiple]="false" hideSingleSelectionIndicator [formControl]="selectionControl">
+    <mat-list-option class="product-list" *ngFor="let product of filteredProducts$ | async" [value]="product">
       {{ product.id }} - {{ product.name }}
     </mat-list-option>
   </mat-selection-list>
