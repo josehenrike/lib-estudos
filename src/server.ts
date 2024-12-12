@@ -21,7 +21,6 @@ app.use(
     redirect: false,
   })
 );
-
 app.use('/**', (req, res, next) => {
   angularApp
     .handle(req)

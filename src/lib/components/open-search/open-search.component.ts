@@ -29,6 +29,7 @@ export interface Product {
     ReactiveFormsModule,
     MatIconModule,
   ],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './open-search.component.html',
   styleUrl: './open-search.component.scss',
