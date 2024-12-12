@@ -12,7 +12,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Product } from '../../open-search/open-search.component';
 
 @Component({
     selector: 'dropdowndialog',
@@ -31,7 +30,6 @@ import { Product } from '../../open-search/open-search.component';
     ],
 })
 export class DropdownDialogComponent {
-
 
     //#region Lifecycle Hooks
 
