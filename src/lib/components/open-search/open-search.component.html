@@ -5,7 +5,7 @@
       <button (click)="closeSearch()" class="close">
         <mat-icon>close</mat-icon>
       </button>
-      <button class=" check" (click)="checkSelection()"><mat-icon>check</mat-icon></button>
+      <button class="check" [disabled]="!selectionControl.value" (click)="checkSelection()"><mat-icon>check</mat-icon></button>
     </div>
   </div>
   <input class="search" matInput placeholder="Digite o nome do produto" [formControl]="searchControl" />

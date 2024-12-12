@@ -74,11 +74,12 @@ export class SearchComponent implements OnInit {
       product.name.toLowerCase().includes(lowerCaseTerm);
     });
   }
+
   openSearch() {
     const searchRef = this.search.open(OpenSearchComponent);
     searchRef.afterClosed().subscribe((result: Product[]) => {
       if (result) {
-        this.searchControl.setValue(result);
+        this.searchControl.setValue(result[0].name);
         console.log('Dialog result:', result);
       }
     });
