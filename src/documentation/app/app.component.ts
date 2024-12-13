@@ -1,7 +1,6 @@
 import { MatDialogModule } from '@angular/material/dialog';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MenuComponent } from '../../lib/components/menu/menu.component';
 import { CommonModule } from '@angular/common';
 
 @Component({

@@ -13,6 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
 import { debounceTime, map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { MatCardModule } from '@angular/material/card';
 
 export interface Product {
   name: string;
@@ -33,6 +34,7 @@ export interface Product {
     MatOptionModule,
     MatListModule,
     CommonModule,
+    MatCardModule,
   ],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],

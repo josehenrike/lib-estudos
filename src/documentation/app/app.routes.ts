@@ -1,9 +1,7 @@
-import { RouterModule, Routes } from '@angular/router';
-import { MenuComponent } from '../../lib/components/menu/menu.component';
-import { NgModule } from '@angular/core';
+import { Routes } from '@angular/router';
 import { SearchComponent } from '../../lib/components/search/search.component';
-import { AppComponent } from './app.component';
 import { DropdownComponent } from '../../lib/components/dropdown/dropdown.component';
+import { MenuComponent } from '../../lib/components/menu/menu.component';
 
 export const routes: Routes = [
   { path: '', component: MenuComponent },
