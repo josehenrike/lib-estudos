@@ -1,7 +1,7 @@
 <form class="searchForm">
-  <mat-form-field class="searchField">
+  <mat-form-field class="searchField" appearance="outline">
     <div class="example-form">
-      <input matInput placeholder="Digite ou selecione um produto" [formControl]="searchControl" />
+      <input matInput [formControl]="searchControl" />
       <a class="searchIcon" (click)="openSearch()">
         <mat-icon>search</mat-icon>
       </a>
