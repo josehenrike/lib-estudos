@@ -11,9 +11,10 @@
 
 .custom-field .mat-select {
     padding: 12px;
+    font-size: 16px;
 }
 
-.custom-field.mat-form-field {
+.custom-field .mat-form-field {
     font-size: 16px;
 }
 
@@ -32,6 +33,7 @@
     align-items: center;
     display: flex;
     cursor: pointer;
+    border-radius: 0 5px 5px 0;
 }
 
 .clear-button {
