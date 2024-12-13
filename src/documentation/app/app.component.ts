@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
   imports: [MatDialogModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  template: `<router-outlet></router-outlet>`,
 })
 export class AppComponent {
   title = 'documentation';
