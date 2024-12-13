@@ -1,7 +1,6 @@
 app-search {
   .searchForm {
     display: flex;
-    justify-content: center;
   }
   .example-form {
     display: flex;
@@ -15,8 +14,31 @@ app-search {
     max-width: 500px;
     width: 100%;
   }
-
+  .card-container {
+    width: 500px;
+    height: 300px;
+  }
   .example-full-width {
     width: 100%;
+  }
+  .header-card {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .icons {
+    display: flex;
+  }
+
+  .code-editor {
+    width: 500px;
+    max-width: 100%;
+    height: 300px;
+    font-family: monospace;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
   }
 }

@@ -45,8 +45,22 @@ export class SearchComponent implements OnInit {
   searchControl = new FormControl();
   filteredProducts$!: Observable<Product[]>;
   selectedProduct: Product | null = null;
-
   readonly search = inject(MatDialog);
+
+  isEditMode: boolean = false;
+
+  searchcode = `
+  <form class="searchForm">
+    <mat-form-field class="searchField" appearance="outline">
+      <div class="example-form">
+        <input matInput [formControl]="searchControl" />
+        <a class="searchIcon" (click)="openSearch()">
+          <mat-icon>search</mat-icon>
+        </a>
+      </div>
+    </mat-form-field>
+  </form>
+  `;
 
   constructor(private productService: ProductService) {}
 
@@ -58,6 +72,14 @@ export class SearchComponent implements OnInit {
       debounceTime(300),
       map((searchTerm) => this.filterProducts(searchTerm || ''))
     );
+  }
+  toggleEditMode() {
+    this.isEditMode = !this.isEditMode;
+
+    if (!this.isEditMode) {
+      // Salvar o código atualizado (apenas exemplo, pode conectar a uma API aqui)
+      console.log('Código atualizado:', this.searchcode);
+    }
   }
   loadProducts() {
     this.productService.getProducts().subscribe((data) => {

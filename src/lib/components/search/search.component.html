@@ -1,8 +1,8 @@
 <div>
   <form class="searchForm">
-    <mat-form-field class="searchField">
+    <mat-form-field class="searchField" appearance="outline">
       <div class="example-form">
-        <input matInput placeholder="Digite ou selecione um produto" [formControl]="searchControl" />
+        <input matInput [formControl]="searchControl" />
         <a class="searchIcon" (click)="openSearch()">
           <mat-icon>search</mat-icon>
         </a>
@@ -12,9 +12,26 @@
 </div>
 
 
-<div>
-  <mat-card appearance="outlined">
-    <mat-card-content>Simple card</mat-card-content>
-    <mat-card-content>Simple card</mat-card-content>
+<div class="card-container">
+  <mat-card>
+    <div class="header-card">
+      <mat-card-content>Search</mat-card-content>
+      <div class="icons">
+        <button (click)="toggleEditMode()">
+          <mat-icon>{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="!isEditMode; else editMode">
+      <pre>
+        <code class="code-content">{{ searchcode }}</code>
+      </pre>
+    </div>
+
+    <ng-template #editMode>
+      <textarea [(ngModel)]="searchcode" class="code-editor"></textarea>
+    </ng-template>
   </mat-card>
+
 </div>
