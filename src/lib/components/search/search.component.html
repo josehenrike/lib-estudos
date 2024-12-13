@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div>
   <form class="searchForm">
     <mat-form-field class="searchField" appearance="outline">
@@ -22,15 +21,6 @@
           <mat-icon>{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
         </button>
       </div>
-=======
-<form class="searchForm">
-  <mat-form-field class="searchField" appearance="outline">
-    <div class="example-form">
-      <input matInput [formControl]="searchControl" />
-      <a class="searchIcon" (click)="openSearch()">
-        <mat-icon>search</mat-icon>
-      </a>
->>>>>>> d5d54ab952ee0aeac82e61bff628b316e39e2d73
     </div>
 
     <div *ngIf="!isEditMode; else editMode">
