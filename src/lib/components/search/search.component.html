@@ -10,28 +10,45 @@
     </mat-form-field>
   </form>
 </div>
-
-
-<div class="card-container">
+<div>
   <mat-card>
     <div class="header-card">
-      <mat-card-content>Search</mat-card-content>
+      <mat-card-content>Search html</mat-card-content>
       <div class="icons">
-        <button (click)="toggleEditMode()">
+        <button class="edit" (click)="toggleEditModehtml()">
           <mat-icon>{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
         </button>
       </div>
     </div>
-
     <div *ngIf="!isEditMode; else editMode">
       <pre>
-        <code class="code-content">{{ searchcode }}</code>
+        <code class="code-content">{{ searchcodehtml }}</code>
       </pre>
     </div>
-
     <ng-template #editMode>
-      <textarea [(ngModel)]="searchcode" class="code-editor"></textarea>
+      <textarea [(ngModel)]="searchcodehtml" class="code-editor"></textarea>
     </ng-template>
   </mat-card>
 
-</div>
+
+  <div>
+    <mat-card>
+      <div class="header-card">
+        <mat-card-content>Search ts</mat-card-content>
+        <div class="icons">
+          <button class="edit" (click)="toggleEditModets()">
+            <mat-icon>{{ isEditModets ? 'save' : 'edit' }}</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="!isEditModets; else editMode">
+        <pre>
+          <code class="code-content">{{ searchcodets }}</code>
+        </pre>
+      </div>
+      <ng-template #editMode>
+        <textarea [(ngModel)]="searchcodets" class="code-editor"></textarea>
+      </ng-template>
+    </mat-card>
+
+  </div>

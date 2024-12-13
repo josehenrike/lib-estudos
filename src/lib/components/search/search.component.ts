@@ -46,10 +46,10 @@ export class SearchComponent implements OnInit {
   filteredProducts$!: Observable<Product[]>;
   selectedProduct: Product | null = null;
   readonly search = inject(MatDialog);
-
+  isEditModets: boolean = false;
   isEditMode: boolean = false;
-
-  searchcode = `
+  searchcodets = ` `;
+  searchcodehtml = `
   <form class="searchForm">
     <mat-form-field class="searchField" appearance="outline">
       <div class="example-form">
@@ -73,12 +73,18 @@ export class SearchComponent implements OnInit {
       map((searchTerm) => this.filterProducts(searchTerm || ''))
     );
   }
-  toggleEditMode() {
+  toggleEditModets() {
+    this.isEditModets = !this.isEditModets;
+
+    if (!this.isEditModets) {
+      console.log('Código atualizado:', this.searchcodets);
+    }
+  }
+  toggleEditModehtml() {
     this.isEditMode = !this.isEditMode;
 
     if (!this.isEditMode) {
-      // Salvar o código atualizado (apenas exemplo, pode conectar a uma API aqui)
-      console.log('Código atualizado:', this.searchcode);
+      console.log('Código atualizado:', this.searchcodehtml);
     }
   }
   loadProducts() {
