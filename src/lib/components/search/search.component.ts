@@ -117,7 +117,6 @@ export class SearchComponent implements OnInit {
     this.isEditModets = !this.isEditModets;
 
     if (!this.isEditModets) {
-      this.saveCodeToServer();
       console.log('Código atualizado:', this.searchcodets);
     }
   }
@@ -125,6 +124,7 @@ export class SearchComponent implements OnInit {
     this.isEditMode = !this.isEditMode;
 
     if (!this.isEditMode) {
+      this.saveCodeToServer();
       console.log('Código atualizado:', this.searchcodehtml);
     }
   }
