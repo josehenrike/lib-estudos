@@ -13,6 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
 import { debounceTime, map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { MatCardModule } from '@angular/material/card';
 
 export interface Product {
   name: string;
@@ -33,6 +34,7 @@ export interface Product {
     MatOptionModule,
     MatListModule,
     CommonModule,
+    MatCardModule,
   ],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
@@ -43,8 +45,22 @@ export class SearchComponent implements OnInit {
   searchControl = new FormControl();
   filteredProducts$!: Observable<Product[]>;
   selectedProduct: Product | null = null;
-
   readonly search = inject(MatDialog);
+  isEditModets: boolean = false;
+  isEditMode: boolean = false;
+  searchcodets = ` `;
+  searchcodehtml = `
+  <form class="searchForm">
+    <mat-form-field class="searchField" appearance="outline">
+      <div class="example-form">
+        <input matInput [formControl]="searchControl" />
+        <a class="searchIcon" (click)="openSearch()">
+          <mat-icon>search</mat-icon>
+        </a>
+      </div>
+    </mat-form-field>
+  </form>
+  `;
 
   constructor(private productService: ProductService) {}
 
@@ -56,6 +72,20 @@ export class SearchComponent implements OnInit {
       debounceTime(300),
       map((searchTerm) => this.filterProducts(searchTerm || ''))
     );
+  }
+  toggleEditModets() {
+    this.isEditModets = !this.isEditModets;
+
+    if (!this.isEditModets) {
+      console.log('Código atualizado:', this.searchcodets);
+    }
+  }
+  toggleEditModehtml() {
+    this.isEditMode = !this.isEditMode;
+
+    if (!this.isEditMode) {
+      console.log('Código atualizado:', this.searchcodehtml);
+    }
   }
   loadProducts() {
     this.productService.getProducts().subscribe((data) => {
