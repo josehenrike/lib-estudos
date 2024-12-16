@@ -13,10 +13,10 @@ interface Product {
 export class ProductService {
   private apiUrl = 'http://localhost:3000/products';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiUrl);
   }
 
   addProduct(product: Product): Observable<Product> {
@@ -31,5 +31,13 @@ export class ProductService {
     return this.http.get<any[]>(`${this.apiUrl}`, {
       params: { name },
     });
+  }
+  updateHtmlCode(htmlCode: string): Observable<void> {
+    return this.http.put<void>('http://localhost:3000/code', {
+      content: htmlCode,
+    });
+  }
+  getHtmlCode(): Observable<{ content: string }> {
+    return this.http.get<{ content: string }>('http://localhost:3000/code');
   }
 }

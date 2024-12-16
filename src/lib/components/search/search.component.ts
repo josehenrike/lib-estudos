@@ -46,8 +46,10 @@ export class SearchComponent implements OnInit {
   filteredProducts$!: Observable<Product[]>;
   selectedProduct: Product | null = null;
   readonly search = inject(MatDialog);
-  isEditModets: boolean = false;
   isEditMode: boolean = false;
+  searchcodehtml: string = ``;
+
+  isEditModets: boolean = false;
   searchcodets = `
    ngOnInit() {
     this.loadProducts();
@@ -80,34 +82,42 @@ export class SearchComponent implements OnInit {
     });
   }
 }`;
-  searchcodehtml = `
-  <form class="searchForm">
-    <mat-form-field class="searchField" appearance="outline">
-      <div class="example-form">
-        <input matInput [formControl]="searchControl" />
-        <a class="searchIcon" (click)="openSearch()">
-          <mat-icon>search</mat-icon>
-        </a>
-      </div>
-    </mat-form-field>
-  </form>
-  `;
 
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
+    this.loadCodeFromServer();
     this.loadProducts();
 
     this.filteredProducts$ = this.searchControl.valueChanges.pipe(
       startWith(''),
       debounceTime(300),
-      map((searchTerm) => this.filterProducts(searchTerm || ''))
+      map((searchTerm) => {
+        if (typeof searchTerm !== 'string') {
+          searchTerm = '';
+        }
+        return this.filterProducts(searchTerm);
+      })
     );
   }
+
+  loadCodeFromServer() {
+    this.productService.getHtmlCode().subscribe((response) => {
+      this.searchcodehtml = response.content;
+      console.log('Código HTML carregado do servidor:', this.searchcodehtml);
+    });
+  }
+  loadProducts() {
+    this.productService.getProducts().subscribe((data) => {
+      this.products = data;
+    });
+  }
+
   toggleEditModets() {
     this.isEditModets = !this.isEditModets;
 
     if (!this.isEditModets) {
+      this.saveCodeToServer();
       console.log('Código atualizado:', this.searchcodets);
     }
   }
@@ -118,11 +128,7 @@ export class SearchComponent implements OnInit {
       console.log('Código atualizado:', this.searchcodehtml);
     }
   }
-  loadProducts() {
-    this.productService.getProducts().subscribe((data) => {
-      this.products = data;
-    });
-  }
+
   filterProducts(searchTerm: string): Product[] {
     const lowerCaseTerm = searchTerm.toLowerCase();
     return this.products.filter((product) => {
@@ -137,6 +143,14 @@ export class SearchComponent implements OnInit {
         this.searchControl.setValue(result[0].name);
         console.log('Dialog result:', result);
       }
+    });
+  }
+  saveCodeToServer() {
+    this.productService.updateHtmlCode(this.searchcodehtml).subscribe(() => {
+      console.log(
+        'Código atualizado enviado ao servidor:',
+        this.searchcodehtml
+      );
     });
   }
 }

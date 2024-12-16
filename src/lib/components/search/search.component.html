@@ -20,11 +20,15 @@
         </button>
       </div>
     </div>
+
+    <!-- Modo de Visualização -->
     <div *ngIf="!isEditMode; else editMode">
       <pre>
         <code class="code-content">{{ searchcodehtml }}</code>
       </pre>
     </div>
+
+    <!-- Modo de Edição -->
     <ng-template #editMode>
       <textarea [(ngModel)]="searchcodehtml" class="code-editor"></textarea>
     </ng-template>
