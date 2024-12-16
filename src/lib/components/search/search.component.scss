@@ -2,9 +2,12 @@ app-search {
   .searchForm {
     display: flex;
   }
+
   .example-form {
     display: flex;
+    ;
   }
+
   .searchIcon {
     cursor: pointer;
   }
@@ -14,27 +17,33 @@ app-search {
     max-width: 500px;
     width: 100%;
   }
+
   .card-container {
     width: 500px;
     height: 300px;
   }
+
   .example-full-width {
     width: 100%;
   }
+
   .header-card {
     padding: 5px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
   }
+
   .icons {
     display: flex;
   }
+
   .edit {
     background-color: transparent;
     border: none;
     cursor: pointer;
   }
+
   .code-editor {
     width: 450px;
     max-width: 100%;
