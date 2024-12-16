@@ -48,7 +48,38 @@ export class SearchComponent implements OnInit {
   readonly search = inject(MatDialog);
   isEditModets: boolean = false;
   isEditMode: boolean = false;
-  searchcodets = ` `;
+  searchcodets = `
+   ngOnInit() {
+    this.loadProducts();
+
+    this.filteredProducts$ = this.searchControl.valueChanges.pipe(
+      startWith(''),
+      debounceTime(300),
+      map((searchTerm) => this.filterProducts(searchTerm || ''))
+    );
+  }
+    loadProducts() {
+    this.productService.getProducts().subscribe((data) => {
+      this.products = data;
+    });
+  }
+  filterProducts(searchTerm: string): Product[] {
+    const lowerCaseTerm = searchTerm.toLowerCase();
+    return this.products.filter((product) => {
+      product.name.toLowerCase().includes(lowerCaseTerm);
+    });
+  }
+
+  openSearch() {
+    const searchRef = this.search.open(OpenSearchComponent);
+    searchRef.afterClosed().subscribe((result: Product[]) => {
+      if (result) {
+        this.searchControl.setValue(result[0].name);
+        console.log('Dialog result:', result);
+      }
+    });
+  }
+}`;
   searchcodehtml = `
   <form class="searchForm">
     <mat-form-field class="searchField" appearance="outline">
