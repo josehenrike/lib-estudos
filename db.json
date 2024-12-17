@@ -19,5 +19,8 @@
   ],
   "code": {
     "content": "<div>\n  <form class= searchForm>\n    <mat-form-field class= searchField appearance= outline>\n      <div class= example-form>\n        <input matInput [formControl]= searchControl/>\n        <a class=searchIcon (click)=openSearch()>\n          <mat-icon>search</mat-icon>\n        </a>\n      </div>\n    </mat-form-field>\n  </form>\n</div>\n<div>"
+  },
+  "dropdownCode": {
+    "dropdownContent": ""
   }
 }

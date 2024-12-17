@@ -42,11 +42,11 @@ export class ProductService {
   }
 
   updateDropdownHtmlCode(dropdownCode: string): Observable<void> {
-    return this.http.put<void>('http://localhost:3000/code', {
-      content: dropdownCode,
+    return this.http.put<void>('http://localhost:3000/dropdownCode', {
+      dropdownContent: dropdownCode,
     });
   }
-  getDropdownHtmlCode(): Observable<{ content: string }> {
-    return this.http.get<{ content: string }>('http://localhost:3000/code');
+  getDropdownHtmlCode(): Observable<{ dropdownContent: string }> {
+    return this.http.get<{ dropdownContent: string }>('http://localhost:3000/dropdownCode');
   }
 }

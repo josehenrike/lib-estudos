@@ -66,7 +66,7 @@ export class DropdownComponent implements OnInit {
 
   loadCodeFromServer() {
     this.productService.getDropdownHtmlCode().subscribe((response) => {
-      this.dropdowncodehtml = response.content;
+      this.dropdowncodehtml = response.dropdownContent;
       console.log('Código HTML carregado do servidor:', this.dropdowncodehtml);
     });
   }
