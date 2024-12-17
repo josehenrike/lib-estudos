@@ -41,12 +41,24 @@ export class ProductService {
     return this.http.get<{ content: string }>('http://localhost:3000/code');
   }
 
+  getTSCode(): Observable<{ contentCodeTs: string }> {
+    return this.http.get<{ contentCodeTs: string }>(
+      'http://localhost:3000/codeTs'
+    );
+  }
   updateDropdownHtmlCode(dropdownCode: string): Observable<void> {
     return this.http.put<void>('http://localhost:3000/dropdownCode', {
       dropdownContent: dropdownCode,
     });
   }
+
   getDropdownHtmlCode(): Observable<{ dropdownContent: string }> {
-    return this.http.get<{ dropdownContent: string }>('http://localhost:3000/dropdownCode');
+    return this.http.get<{ dropdownContent: string }>('http://localhost:3000/code');
+  }
+
+  updateTsCode(tsCode: string): Observable<void> {
+    return this.http.put<void>('http://localhost:3000/codeTs', {
+      contentCodeTs: tsCode,
+    });
   }
 }
