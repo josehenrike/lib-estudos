@@ -40,4 +40,15 @@ export class ProductService {
   getHtmlCode(): Observable<{ content: string }> {
     return this.http.get<{ content: string }>('http://localhost:3000/code');
   }
+
+  getTSCode(): Observable<{ contentCodeTs: string }> {
+    return this.http.get<{ contentCodeTs: string }>(
+      'http://localhost:3000/codeTs'
+    );
+  }
+  updateTsCode(tsCode: string): Observable<void> {
+    return this.http.put<void>('http://localhost:3000/codeTs', {
+      contentCodeTs: tsCode,
+    });
+  }
 }
