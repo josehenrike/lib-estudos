@@ -13,7 +13,7 @@ interface Product {
 export class ProductService {
   private apiUrl = 'http://localhost:3000/products';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl);
@@ -38,6 +38,15 @@ export class ProductService {
     });
   }
   getHtmlCode(): Observable<{ content: string }> {
+    return this.http.get<{ content: string }>('http://localhost:3000/code');
+  }
+
+  updateDropdownHtmlCode(dropdownCode: string): Observable<void> {
+    return this.http.put<void>('http://localhost:3000/code', {
+      content: dropdownCode,
+    });
+  }
+  getDropdownHtmlCode(): Observable<{ content: string }> {
     return this.http.get<{ content: string }>('http://localhost:3000/code');
   }
 }

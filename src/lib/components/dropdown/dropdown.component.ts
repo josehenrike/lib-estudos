@@ -19,6 +19,7 @@ import {
 } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 
 interface Product {
   id: number;
@@ -37,6 +38,7 @@ interface Product {
     HttpClientModule,
     CommonModule,
     MatIconModule,
+    MatCardModule
   ],
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss',
@@ -46,6 +48,9 @@ export class DropdownComponent implements OnInit {
   products: any[] = [];
   prodControl = new FormControl<Product | null>(null, Validators.required);
   selectFormControl = new FormControl(1, Validators.required);
+  isEditMode: boolean = false;
+  dropdowncodehtml: string = ``;
+  isEditModets: boolean = false;
 
   constructor(
     private productService: ProductService,
@@ -53,8 +58,16 @@ export class DropdownComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loadCodeFromServer();
     this.productService.getProducts().subscribe((data) => {
       this.products = data;
+    });
+  }
+
+  loadCodeFromServer() {
+    this.productService.getDropdownHtmlCode().subscribe((response) => {
+      this.dropdowncodehtml = response.content;
+      console.log('Código HTML carregado do servidor:', this.dropdowncodehtml);
     });
   }
 
@@ -93,5 +106,23 @@ export class DropdownComponent implements OnInit {
   clearSelection(event: MouseEvent) {
     event.stopPropagation();
     this.prodControl.setValue(null);
+  }
+
+  toggleEditModehtml() {
+    this.isEditMode = !this.isEditMode;
+
+    if (!this.isEditMode) {
+      this.saveCodeToServer();
+      console.log('Código atualizado:', this.dropdowncodehtml);
+    }
+  }
+
+  saveCodeToServer() {
+    this.productService.updateDropdownHtmlCode(this.dropdowncodehtml).subscribe(() => {
+      console.log(
+        'Código atualizado enviado ao servidor:',
+        this.dropdowncodehtml
+      );
+    });
   }
 }
