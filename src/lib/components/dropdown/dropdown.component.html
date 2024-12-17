@@ -34,4 +34,28 @@
         }
     </div>
 
-</div>
+    <div>
+        <mat-card>
+            <div class="header-card">
+                <mat-card-content>Dropdown</mat-card-content>
+                <div class="icons">
+                    <button class="edit" (click)="toggleEditModehtml()">
+                        <mat-icon>{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modo de Visualização -->
+            <div *ngIf="!isEditMode; else editMode">
+                <pre>
+              <code class="code-content">{{ dropdowncodehtml }}</code>
+            </pre>
+            </div>
+
+            <!-- Modo de Edição -->
+            <ng-template #editMode>
+                <textarea [(ngModel)]="dropdowncodehtml" class="code-editor"></textarea>
+            </ng-template>
+        </mat-card>
+
+    </div>
