@@ -51,6 +51,7 @@ export class SearchComponent implements OnInit {
 
   isEditModets: boolean = false;
   searchcodets: string = ``;
+  //  "ngOnInit() {\n  this.loadProducts();\n  this.filteredProducts$ = this.searchControl.valueChanges.pipe(\n    startWith(''),\n    debounceTime(300),\n    map((searchTerm) => this.filterProducts(searchTerm || ''))\n  );\n}\n\nloadProducts() {\n  this.productService.getProducts().subscribe((data) => {\n    this.products = data;\n  });\n}\n\nfilterProducts(searchTerm: string): Product[] {\n  const lowerCaseTerm = searchTerm.toLowerCase();\n  return this.products.filter((product) => \n    product.name.toLowerCase().includes(lowerCaseTerm)\n  );\n}\n\nopenSearch() {\n  const searchRef = this.search.open(OpenSearchComponent);\n  searchRef.afterClosed().subscribe((result: Product[]) => {\n    if (result) {\n      this.searchControl.setValue(result[0].name);\n      console.log('Dialog result:', result);\n    }\n  });\n}"
 
   constructor(private productService: ProductService) {}
 

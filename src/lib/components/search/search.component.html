@@ -1,3 +1,5 @@
+<h1>Search</h1>
+
 <div>
   <form class="searchForm">
     <mat-form-field class="searchField" appearance="outline">
@@ -10,49 +12,46 @@
     </mat-form-field>
   </form>
 </div>
+
+<mat-card>
+  <div class="header-card">
+    <mat-card-content>Search html</mat-card-content>
+    <div class="icons">
+      <button class="edit" (click)="toggleEditModehtml()">
+        <mat-icon>{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!isEditMode; else editMode">
+    <pre>
+        <code class="code-content">{{ searchcodehtml }}</code>
+      </pre>
+  </div>
+
+  <ng-template #editMode>
+    <textarea [(ngModel)]="searchcodehtml" class="code-editor"></textarea>
+  </ng-template>
+</mat-card>
+<div>
+  <p>blablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablaablablablablablablablabla</p>
+</div>
 <div>
   <mat-card>
     <div class="header-card">
-      <mat-card-content>Search html</mat-card-content>
+      <mat-card-content>Search ts</mat-card-content>
       <div class="icons">
-        <button class="edit" (click)="toggleEditModehtml()">
-          <mat-icon>{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
+        <button class="edit" (click)="toggleEditModets()">
+          <mat-icon>{{ isEditModets ? 'save' : 'edit' }}</mat-icon>
         </button>
       </div>
     </div>
-
-    <!-- Modo de Visualização -->
-    <div *ngIf="!isEditMode; else editMode">
+    <div *ngIf="!isEditModets; else editModets">
       <pre>
-        <code class="code-content">{{ searchcodehtml }}</code>
-      </pre>
-    </div>
-
-    <!-- Modo de Edição -->
-    <ng-template #editMode>
-      <textarea [(ngModel)]="searchcodehtml" class="code-editor"></textarea>
-    </ng-template>
-  </mat-card>
-
-
-  <div>
-    <mat-card>
-      <div class="header-card">
-        <mat-card-content>Search ts</mat-card-content>
-        <div class="icons">
-          <button class="edit" (click)="toggleEditModets()">
-            <mat-icon>{{ isEditModets ? 'save' : 'edit' }}</mat-icon>
-          </button>
-        </div>
-      </div>
-      <div *ngIf="!isEditModets; else editModets">
-        <pre>
           <code class="code-content">{{ searchcodets }}</code>
         </pre>
-      </div>
-      <ng-template #editModets>
-        <textarea [(ngModel)]="searchcodets" class="code-editor"></textarea>
-      </ng-template>
-    </mat-card>
-
-  </div>
+    </div>
+    <ng-template #editModets>
+      <textarea [(ngModel)]="searchcodets" class="code-editor"></textarea>
+    </ng-template>
+  </mat-card>
