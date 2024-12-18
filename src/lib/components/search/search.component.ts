@@ -70,6 +70,12 @@ export class SearchComponent implements OnInit {
     );
   }
 
+  loadCodeFromServerTs() {
+    this.productService.getTSCode().subscribe((response) => {
+      this.searchcodets = response.contentCodeTs;
+      console.log('Código TS carregado do servidor:', this.searchcodets);
+    });
+  }
   loadCodeFromServer() {
     this.productService.getHtmlCode().subscribe((response) => {
       this.searchcodehtml = response.content;
@@ -112,6 +118,12 @@ export class SearchComponent implements OnInit {
         this.searchControl.setValue(result[0].name);
         console.log('Dialog result:', result);
       }
+    });
+  }
+
+  saveCodeToServerTs() {
+    this.productService.updateTsCode(this.searchcodets).subscribe(() => {
+      console.log('Código atualizado enviado ao servidor:', this.searchcodets);
     });
   }
   saveCodeToServer() {
