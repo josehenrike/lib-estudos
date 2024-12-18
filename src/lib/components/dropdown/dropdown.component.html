@@ -1,4 +1,4 @@
-<div class="text-container">
+<div class="text-container-dropdown">
 
     <div class="initial-text">
         <p>Um dropdown é um elemento interativo de interface gráfica que permite ao usuário selecionar uma opção dentre
@@ -18,12 +18,12 @@
 
 </div>
 
-<div class="code">
+<div class="codehtml-dropdown">
     <mat-card>
-        <div class="header-card">
+        <div class="header-card-dropdown-html">
             <mat-card-content>Exemplo no HTML</mat-card-content>
-            <div class="icons">
-                <button class="edit" (click)="toggleEditModehtml()">
+            <div class="icons-dropdown-html">
+                <button class="edit-dropdown-html" (click)="toggleEditModehtml()">
                     <mat-icon>{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
                 </button>
             </div>
@@ -32,13 +32,50 @@
         <!-- Modo de Visualização -->
         <div *ngIf="!isEditMode; else editMode">
             <pre>
-                <code class="code-content">{{ dropdowncodehtml }}</code>
+                <code class="code-content-dropdown-html">{{ dropdowncodehtml }}</code>
             </pre>
         </div>
 
         <!-- Modo de Edição -->
         <ng-template #editMode>
-            <textarea [(ngModel)]="dropdowncodehtml" class="code-editor"></textarea>
+            <textarea [(ngModel)]="dropdowncodehtml" class="code-editor-dropdown-html"></textarea>
+        </ng-template>
+    </mat-card>
+</div>
+
+<div class="button-text-container">
+    <div class="title-button">
+        <h2>Botão de Adicionar ou Editar</h2>
+    </div>
+
+    <div class="text-button">
+        <p>Os botões de adicionar e editar podem ser usados para adicionar ou editar produtos no dropdown, caso o
+            usuário precise.</p>
+    </div>
+
+</div>
+
+<div class="codehtml-button">
+    <mat-card>
+        <div class="header-card-button-html">
+            <mat-card-content>Exemplo no HTML</mat-card-content>
+            <div class="icons-button-html">
+                <button class="edit-button-html" (click)="toggleEditModehtmlButton()">
+                    <mat-icon>{{ isEditModeButton ? 'save' : 'edit' }}</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <!-- Modo de Visualização -->
+        <div *ngIf="!isEditModeButton; else editModeButton">
+            <pre>
+                <code class="code-content-button-html">{{ buttoncodehtml }}</code>
+            </pre>
+        </div>
+
+        <!-- Modo de Edição -->
+        <ng-template #editModeButton>
+            <textarea [(ngModel)]="buttoncodehtml" class="code-editor-button-html"></textarea>
         </ng-template>
     </mat-card>
 </div>

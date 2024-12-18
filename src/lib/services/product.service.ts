@@ -46,19 +46,29 @@ export class ProductService {
       'http://localhost:3000/codeTs'
     );
   }
-  updateDropdownHtmlCode(dropdownCode: string): Observable<void> {
-    return this.http.put<void>('http://localhost:3000/dropdownCode', {
-      dropdownContent: dropdownCode,
+  updateDropdownHtmlCode(dropdownCodeHtml: string): Observable<void> {
+    return this.http.put<void>('http://localhost:3000/dropdownCodeHtml', {
+      dropdownContentHtml: dropdownCodeHtml,
     });
   }
 
-  getDropdownHtmlCode(): Observable<{ dropdownContent: string }> {
-    return this.http.get<{ dropdownContent: string }>('http://localhost:3000/dropdownCode');
+  getDropdownHtmlCode(): Observable<{ dropdownContentHtml: string }> {
+    return this.http.get<{ dropdownContentHtml: string }>('http://localhost:3000/dropdownCodeHtml');
   }
 
   updateTsCode(tsCode: string): Observable<void> {
     return this.http.put<void>('http://localhost:3000/codeTs', {
       contentCodeTs: tsCode,
     });
+  }
+
+  updateButtonHtmlCode(buttonCodeHtml: string): Observable<void> {
+    return this.http.put<void>('http://localhost:3000/buttonCodeHtml', {
+      buttonContentHtml: buttonCodeHtml,
+    });
+  }
+
+  getButtonHtmlCode(): Observable<{ buttonContentHtml: string }> {
+    return this.http.get<{ buttonContentHtml: string }>('http://localhost:3000/buttonCodeHtml');
   }
 }

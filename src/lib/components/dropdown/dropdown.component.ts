@@ -50,7 +50,8 @@ export class DropdownComponent implements OnInit {
   selectFormControl = new FormControl(1, Validators.required);
   isEditMode: boolean = false;
   dropdowncodehtml: string = ``;
-  isEditModets: boolean = false;
+  buttoncodehtml: string = ``;
+  isEditModeButton: boolean = false;
 
   constructor(
     private productService: ProductService,
@@ -59,6 +60,7 @@ export class DropdownComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCodeFromServer();
+    this.loadCodeFromServerButton();
     this.productService.getProducts().subscribe((data) => {
       this.products = data;
     });
@@ -66,8 +68,15 @@ export class DropdownComponent implements OnInit {
 
   loadCodeFromServer() {
     this.productService.getDropdownHtmlCode().subscribe((response) => {
-      this.dropdowncodehtml = response.dropdownContent;
+      this.dropdowncodehtml = response.dropdownContentHtml;
       console.log('Código HTML carregado do servidor:', this.dropdowncodehtml);
+    });
+  }
+
+  loadCodeFromServerButton() {
+    this.productService.getButtonHtmlCode().subscribe((response) => {
+      this.buttoncodehtml = response.buttonContentHtml;
+      console.log('Código HTML carregado do servidor:', this.buttoncodehtml);
     });
   }
 
@@ -118,10 +127,28 @@ export class DropdownComponent implements OnInit {
   }
 
   saveCodeToServer() {
-    this.productService.updateDropdownHtmlCode(this.dropdowncodehtml).subscribe(() => {
+    this.productService.updateDropdownHtmlCode(this.dropdowncodehtml,).subscribe(() => {
       console.log(
         'Código atualizado enviado ao servidor:',
         this.dropdowncodehtml
+      );
+    });
+  }
+
+  toggleEditModehtmlButton() {
+    this.isEditModeButton = !this.isEditModeButton;
+
+    if (!this.isEditModeButton) {
+      this.saveCodeToServerHtmlButton();
+      console.log('Código atualizado:', this.buttoncodehtml);
+    }
+  }
+
+  saveCodeToServerHtmlButton() {
+    this.productService.updateButtonHtmlCode(this.buttoncodehtml,).subscribe(() => {
+      console.log(
+        'Código atualizado enviado ao servidor:',
+        this.buttoncodehtml
       );
     });
   }
