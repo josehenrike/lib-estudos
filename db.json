@@ -24,6 +24,6 @@
     "contentCodeTs": "code"
   },
   "dropdownCode": {
-    "dropdownContent": ""
+    "dropdownContent": "<mat-form-field class=\"custom-field\" hideRequiredMarker=\"true\" appearance=\"outline\">\n  <mat-label></mat-label>\n  <mat-select [formControl]=\"prodControl\" required>\n    <mat-option *ngFor=\"let prod of products; trackBy: prod.id\" [value]=\"prod.id\">\n      {{ prod.name }}\n    </mat-option>\n  </mat-select>\n</mat-form-field>"
   }
 }

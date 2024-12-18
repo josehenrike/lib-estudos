@@ -53,7 +53,7 @@ export class ProductService {
   }
 
   getDropdownHtmlCode(): Observable<{ dropdownContent: string }> {
-    return this.http.get<{ dropdownContent: string }>('http://localhost:3000/code');
+    return this.http.get<{ dropdownContent: string }>('http://localhost:3000/dropdownCode');
   }
 
   updateTsCode(tsCode: string): Observable<void> {
