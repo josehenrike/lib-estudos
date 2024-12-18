@@ -56,6 +56,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.loadCodeFromServer();
+    this.loadCodeFromServerTs();
     this.loadProducts();
 
     this.filteredProducts$ = this.searchControl.valueChanges.pipe(
@@ -92,6 +93,7 @@ export class SearchComponent implements OnInit {
     this.isEditModets = !this.isEditModets;
 
     if (!this.isEditModets) {
+      this.saveCodeToServerTs();
       console.log('Código atualizado:', this.searchcodets);
     }
   }
