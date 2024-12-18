@@ -1,3 +1,48 @@
+<div class="text-container">
+
+    <div class="initial-text">
+        <p>Um dropdown é um elemento interativo de interface gráfica que permite ao usuário selecionar uma opção dentre
+            várias disponíveis. Caso não tenha o que o usuário deseja, ele pode adicionar ou editar um produto.</p>
+    </div>
+
+    <div class="title-dropdown">
+        <h2>Dropdown</h2>
+    </div>
+
+    <div class="text-dropdown">
+        <p>O mat-form-field é um contêiner que fornece uma estrutura clara e bem definida para os campos de
+            entrada de formulário, incluindo dropdowns.</p>
+        <p>O mat-select é uma solução pronta para criar dropdowns com diversas funcionalidades e integração
+            direta com o Angular.</p>
+    </div>
+
+</div>
+
+<div class="code">
+    <mat-card>
+        <div class="header-card">
+            <mat-card-content>Exemplo no HTML</mat-card-content>
+            <div class="icons">
+                <button class="edit" (click)="toggleEditModehtml()">
+                    <mat-icon>{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <!-- Modo de Visualização -->
+        <div *ngIf="!isEditMode; else editMode">
+            <pre>
+                <code class="code-content">{{ dropdowncodehtml }}</code>
+            </pre>
+        </div>
+
+        <!-- Modo de Edição -->
+        <ng-template #editMode>
+            <textarea [(ngModel)]="dropdowncodehtml" class="code-editor"></textarea>
+        </ng-template>
+    </mat-card>
+</div>
+
 <div class="form-container">
 
     <!-- Dropdown -->
@@ -34,28 +79,4 @@
         }
     </div>
 
-    <div>
-        <mat-card>
-            <div class="header-card">
-                <mat-card-content>Dropdown</mat-card-content>
-                <div class="icons">
-                    <button class="edit" (click)="toggleEditModehtml()">
-                        <mat-icon>{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Modo de Visualização -->
-            <div *ngIf="!isEditMode; else editMode">
-                <pre>
-              <code class="code-content">{{ dropdowncodehtml }}</code>
-            </pre>
-            </div>
-
-            <!-- Modo de Edição -->
-            <ng-template #editMode>
-                <textarea [(ngModel)]="dropdowncodehtml" class="code-editor"></textarea>
-            </ng-template>
-        </mat-card>
-
-    </div>
+</div>

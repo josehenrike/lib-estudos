@@ -1,19 +1,19 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Gasolina"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Etanol"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Diesel"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Lubrificante"
     }
   ],
@@ -24,6 +24,6 @@
     "contentCodeTs": "ngOnInit() {this.loadProducts(); this.filteredProducts$ = this.searchControl.valueChanges.pipe(startWith(''), debounceT(300),map((searchTerm) => this.filterProducts(searchTerm || '')) );} loadProducts() {   this.productService.getProducts().subscribe((data => {   this.products = data;    });  }  filterProducts(searchTerm: string): Product[] {    const lowerCaseTerm = searchTerm.toLowerCas();    return this.products.filter((product) => {     product.name.toLowerCase().includes(lowerCaseTerm);   }); }  openSearch() {    const searchRef = this.search.open(OpenSearchComponent);    searchRef.afterClosed().subscribe((result: Product[]) => {      if (result) {      this.searchControl.setValue(result[0].name);      console.log('Dialog result:', result);      }   });  }}"
   },
   "dropdownCode": {
-    "dropdownContent": ""
+    "dropdownContent": "<mat-form-field class=\"custom-field\" hideRequiredMarker=\"true\" appearance=\"outline\">\n  <mat-label></mat-label>\n  <mat-select [formControl]=\"prodControl\" required>\n    <mat-option *ngFor=\"let prod of products; trackBy: prod.id\" [value]=\"prod.id\">\n      {{ prod.name }}\n    </mat-option>\n  </mat-select>\n</mat-form-field>"
   }
 }
