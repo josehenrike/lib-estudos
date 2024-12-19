@@ -46,6 +46,7 @@ export class SearchComponent implements OnInit {
   filteredProducts$!: Observable<Product[]>;
   selectedProduct: Product | null = null;
   readonly search = inject(MatDialog);
+
   isEditMode: boolean = false;
   searchcodehtml: string = ``;
 

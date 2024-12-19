@@ -13,7 +13,7 @@ interface Product {
 export class ProductService {
   private apiUrl = 'http://localhost:3000/products';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl);
@@ -46,6 +46,11 @@ export class ProductService {
       'http://localhost:3000/codeTs'
     );
   }
+  getSearchCode(): Observable<{ contentCodeSearch: string }> {
+    return this.http.get<{ contentCodeSearch: string }>(
+      'http://localhost:3000/codeSearch'
+    );
+  }
   updateDropdownHtmlCode(dropdownCodeHtml: string): Observable<void> {
     return this.http.put<void>('http://localhost:3000/dropdownCodeHtml', {
       dropdownContentHtml: dropdownCodeHtml,
@@ -53,12 +58,20 @@ export class ProductService {
   }
 
   getDropdownHtmlCode(): Observable<{ dropdownContentHtml: string }> {
-    return this.http.get<{ dropdownContentHtml: string }>('http://localhost:3000/dropdownCodeHtml');
+    return this.http.get<{ dropdownContentHtml: string }>(
+      'http://localhost:3000/dropdownCodeHtml'
+    );
   }
 
   updateTsCode(tsCode: string): Observable<void> {
     return this.http.put<void>('http://localhost:3000/codeTs', {
       contentCodeTs: tsCode,
+    });
+  }
+
+  updateSearchCode(searchCode: string): Observable<void> {
+    return this.http.put<void>('http://localhost:3000/codeSearch', {
+      contentCodeSearch: searchCode,
     });
   }
 
@@ -69,6 +82,8 @@ export class ProductService {
   }
 
   getButtonHtmlCode(): Observable<{ buttonContentHtml: string }> {
-    return this.http.get<{ buttonContentHtml: string }>('http://localhost:3000/buttonCodeHtml');
+    return this.http.get<{ buttonContentHtml: string }>(
+      'http://localhost:3000/buttonCodeHtml'
+    );
   }
 }
