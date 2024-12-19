@@ -1,61 +1,64 @@
-<h1>Search</h1>
-<p>O Search é um componente de pesquisa que ao clicar no botão de pesquisa, abre uma lista com os itens da pesquisa.
-<p>
+<body class="mat-margin">
+  <h1>Search</h1>
+  <p>O Search é um componente de pesquisa que ao clicar no botão de pesquisa, abre uma lista com os itens da pesquisa.
+  <p>
 
-<div>
-  <form class="searchForm">
-    <mat-form-field class="searchField" appearance="outline">
-      <div class="example-form">
-        <input matInput [formControl]="searchControl" />
-        <a class="searchIcon" (click)="openSearch()">
-          <mat-icon>search</mat-icon>
-        </a>
-      </div>
-    </mat-form-field>
-  </form>
-</div>
-<h2>Construção</h2>
-<p>É utilizado o < mat-form-sield>, do material angular, para criar a barra de pesquisa junto com um input para captar os dados.</p>
-
-<mat-card>
-  <div class="header-card">
-    <mat-card-content>Search html</mat-card-content>
-    <div class="icons">
-      <button class="edit" (click)="toggleEditModehtml()">
-        <mat-icon>{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
-      </button>
-    </div>
+  <div>
+    <form class="searchForm">
+      <mat-form-field class="searchField" appearance="outline">
+        <div class="example-form">
+          <input matInput [formControl]="searchControl" />
+          <a class="searchIcon" (click)="openSearch()">
+            <mat-icon>search</mat-icon>
+          </a>
+        </div>
+      </mat-form-field>
+    </form>
   </div>
+  <h2>Construção</h2>
+  <p>É utilizado o < mat-form-sield>, do material angular, para criar a barra de pesquisa junto com um input para captar os dados.</p>
 
-  <div *ngIf="!isEditMode; else editMode">
-    <pre>
-        <code class="code-content">{{ searchcodehtml }}</code>
-      </pre>
-  </div>
-
-  <ng-template #editMode>
-    <textarea [(ngModel)]="searchcodehtml" class="code-editor"></textarea>
-  </ng-template>
-</mat-card>
-<div>
-  <p>Para realizar a logica do Search, foi necessario realizar um filtro para as letras preenchidas, e uma classe para instanciar ela no OnInit do codigo ts<br> segue o exemplo abaixo: </p>
-</div>
-<div>
   <mat-card>
     <div class="header-card">
-      <mat-card-content>Search ts</mat-card-content>
+      <mat-card-content>Search html</mat-card-content>
       <div class="icons">
-        <button class="edit" (click)="toggleEditModets()">
-          <mat-icon>{{ isEditModets ? 'save' : 'edit' }}</mat-icon>
+        <button class="edit" (click)="toggleEditModehtml()">
+          <mat-icon>{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
         </button>
       </div>
     </div>
-    <div *ngIf="!isEditModets; else editModets">
+
+    <div *ngIf="!isEditMode; else editMode">
       <pre>
-          <code class="code-content">{{ searchcodets }}</code>
-        </pre>
+        <code class="code-content">{{ searchcodehtml }}</code>
+      </pre>
     </div>
-    <ng-template #editModets>
-      <textarea [(ngModel)]="searchcodets" class="code-editor"></textarea>
+
+    <ng-template #editMode>
+      <textarea [(ngModel)]="searchcodehtml" class="code-editor"></textarea>
     </ng-template>
   </mat-card>
+  <div>
+    <p>Para realizar a logica do Search, foi necessario realizar um filtro para as letras preenchidas, e uma classe para instanciar ela no OnInit do codigo ts<br> segue o exemplo abaixo: </p>
+  </div>
+
+  <body>
+    <mat-card>
+      <div class="header-card">
+        <mat-card-content>Search ts</mat-card-content>
+        <div class="icons">
+          <button class="edit" (click)="toggleEditModets()">
+            <mat-icon>{{ isEditModets ? 'save' : 'edit' }}</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="!isEditModets; else editModets">
+        <pre>
+          <code class="code-content">{{ searchcodets }}</code>
+        </pre>
+      </div>
+      <ng-template #editModets>
+        <textarea [(ngModel)]="searchcodets" class="code-editor"></textarea>
+      </ng-template>
+    </mat-card>
+  </body>
