@@ -1,8 +1,12 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
 .form-container {
     display: flex;
     align-items: center;
     gap: 16px;
-    margin: 25px;
 }
 
 .custom-field {
@@ -101,20 +105,4 @@
 pre {
     display: flex;
     margin: 30px
-}
-
-.text-container-dropdown {
-    margin: 25px;
-}
-
-.button-text-container {
-    margin: 25px
-}
-
-.codehtml-dropdown {
-    margin: 25px
-}
-
-.codehtml-button {
-    margin: 25px
 }

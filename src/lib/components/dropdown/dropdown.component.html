@@ -1,119 +1,124 @@
-<div class="text-container-dropdown">
+<div class="container">
 
-    <div class="initial-text">
-        <p>Um dropdown é um elemento interativo de interface gráfica que permite ao usuário selecionar uma opção dentre
-            várias disponíveis. Caso não tenha o que o usuário deseja, ele pode adicionar ou editar um produto.</p>
-    </div>
+    <div class="text-container-dropdown">
 
-    <div class="title-dropdown">
-        <h2>Dropdown</h2>
-    </div>
-
-    <div class="text-dropdown">
-        <p>O mat-form-field é um contêiner que fornece uma estrutura clara e bem definida para os campos de
-            entrada de formulário, incluindo dropdowns.</p>
-        <p>O mat-select é uma solução pronta para criar dropdowns com diversas funcionalidades e integração
-            direta com o Angular.</p>
-    </div>
-
-</div>
-
-<div class="codehtml-dropdown">
-    <mat-card>
-        <div class="header-card-dropdown-html">
-            <mat-card-content>Exemplo no HTML</mat-card-content>
-            <div class="icons-dropdown-html">
-                <button class="edit-dropdown-html" (click)="toggleEditModehtml()">
-                    <mat-icon>{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
-                </button>
-            </div>
+        <div class="initial-text">
+            <p>Um dropdown é um elemento interativo de interface gráfica que permite ao usuário selecionar uma opção
+                dentre
+                várias disponíveis. Caso não tenha o que o usuário deseja, ele pode adicionar ou editar um produto.</p>
         </div>
 
-        <!-- Modo de Visualização -->
-        <div *ngIf="!isEditMode; else editMode">
-            <pre>
+        <div class="form-container">
+
+            <!-- Dropdown -->
+            <mat-form-field class="custom-field" hideRequiredMarker="true" appearance="outline">
+                <mat-label></mat-label>
+                <mat-select [formControl]="prodControl" required>
+                    @for (prod of products; track prod) {
+                    <mat-option [value]="prod.id">
+                        {{ prod.name }}
+                    </mat-option>
+                    }
+                </mat-select>
+
+                @if (prodControl.value) {
+                <button mat-icon-button matSuffix class="clear-button" (click)="clearSelection($event)"
+                    aria-label="Clear selection">
+                    <mat-icon>clear</mat-icon>
+                </button>
+                }
+
+                @if (prodControl.hasError('required')) {
+                <mat-error>Selecione um produto</mat-error>
+                }
+            </mat-form-field>
+
+            <!-- Button -->
+            <div class="button-container">
+                @if (!prodControl.value) {
+                <button mat-raised-button (click)="addOrUpdate()"><mat-icon>add</mat-icon></button>
+                }
+
+                @if (prodControl.value) {
+                <button mat-raised-button (click)="addOrUpdate()"><mat-icon>edit</mat-icon></button>
+                }
+            </div>
+
+        </div>
+
+        <div class="title-dropdown">
+            <h2>Campo de Seleção</h2>
+        </div>
+
+        <div class="text-dropdown">
+            <p>O mat-form-field é um contêiner que fornece uma estrutura clara e bem definida para os campos de
+                entrada de formulário, incluindo dropdowns.</p>
+            <p>O mat-select é uma solução pronta para criar dropdowns com diversas funcionalidades e integração
+                direta com o Angular.</p>
+        </div>
+
+    </div>
+
+    <div class="codehtml-dropdown">
+        <mat-card>
+            <div class="header-card-dropdown-html">
+                <mat-card-content>Exemplo no HTML</mat-card-content>
+                <div class="icons-dropdown-html">
+                    <button class="edit-dropdown-html" (click)="toggleEditModehtml()">
+                        <mat-icon>{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modo de Visualização -->
+            <div *ngIf="!isEditMode; else editMode">
+                <pre>
                 <code class="code-content-dropdown-html">{{ dropdowncodehtml }}</code>
             </pre>
-        </div>
-
-        <!-- Modo de Edição -->
-        <ng-template #editMode>
-            <textarea [(ngModel)]="dropdowncodehtml" class="code-editor-dropdown-html"></textarea>
-        </ng-template>
-    </mat-card>
-</div>
-
-<div class="button-text-container">
-    <div class="title-button">
-        <h2>Botão de Adicionar ou Editar</h2>
-    </div>
-
-    <div class="text-button">
-        <p>Os botões de adicionar e editar podem ser usados para adicionar ou editar produtos no dropdown, caso o
-            usuário precise.</p>
-    </div>
-
-</div>
-
-<div class="codehtml-button">
-    <mat-card>
-        <div class="header-card-button-html">
-            <mat-card-content>Exemplo no HTML</mat-card-content>
-            <div class="icons-button-html">
-                <button class="edit-button-html" (click)="toggleEditModehtmlButton()">
-                    <mat-icon>{{ isEditModeButton ? 'save' : 'edit' }}</mat-icon>
-                </button>
             </div>
+
+            <!-- Modo de Edição -->
+            <ng-template #editMode>
+                <textarea [(ngModel)]="dropdowncodehtml" class="code-editor-dropdown-html"></textarea>
+            </ng-template>
+        </mat-card>
+    </div>
+
+    <div class="button-text-container">
+        <div class="title-button">
+            <h2>Botão de Adicionar ou Editar</h2>
         </div>
 
-        <!-- Modo de Visualização -->
-        <div *ngIf="!isEditModeButton; else editModeButton">
-            <pre>
+        <div class="text-button">
+            <p>Os botões de adicionar e editar podem ser usados para adicionar ou editar produtos no dropdown, caso o
+                usuário precise.</p>
+        </div>
+
+    </div>
+
+    <div class="codehtml-button">
+        <mat-card>
+            <div class="header-card-button-html">
+                <mat-card-content>Exemplo no HTML</mat-card-content>
+                <div class="icons-button-html">
+                    <button class="edit-button-html" (click)="toggleEditModehtmlButton()">
+                        <mat-icon>{{ isEditModeButton ? 'save' : 'edit' }}</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modo de Visualização -->
+            <div *ngIf="!isEditModeButton; else editModeButton">
+                <pre>
                 <code class="code-content-button-html">{{ buttoncodehtml }}</code>
             </pre>
-        </div>
+            </div>
 
-        <!-- Modo de Edição -->
-        <ng-template #editModeButton>
-            <textarea [(ngModel)]="buttoncodehtml" class="code-editor-button-html"></textarea>
-        </ng-template>
-    </mat-card>
-</div>
-
-<div class="form-container">
-
-    <!-- Dropdown -->
-    <mat-form-field class="custom-field" hideRequiredMarker="true" appearance="outline">
-        <mat-label></mat-label>
-        <mat-select [formControl]="prodControl" required>
-            @for (prod of products; track prod) {
-            <mat-option [value]="prod.id">
-                {{ prod.name }}
-            </mat-option>
-            }
-        </mat-select>
-
-        @if (prodControl.value) {
-        <button mat-icon-button matSuffix class="clear-button" (click)="clearSelection($event)"
-            aria-label="Clear selection">
-            <mat-icon>clear</mat-icon>
-        </button>
-        }
-
-        @if (prodControl.hasError('required')) {
-        <mat-error>Selecione um produto</mat-error>
-        }
-    </mat-form-field>
-
-    <!-- Button -->
-    <div class="button-container">
-        @if (!prodControl.value) {
-        <button mat-raised-button (click)="addOrUpdate()"><mat-icon>add</mat-icon></button>
-        }
-
-        @if (prodControl.value) {
-        <button mat-raised-button (click)="addOrUpdate()"><mat-icon>edit</mat-icon></button>
-        }
+            <!-- Modo de Edição -->
+            <ng-template #editModeButton>
+                <textarea [(ngModel)]="buttoncodehtml" class="code-editor-button-html"></textarea>
+            </ng-template>
+        </mat-card>
     </div>
 
 </div>
