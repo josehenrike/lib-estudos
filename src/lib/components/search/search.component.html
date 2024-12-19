@@ -8,7 +8,7 @@
       <mat-form-field class="searchField" appearance="outline">
         <div class="example-form">
           <input matInput [formControl]="searchControl" />
-          <a class="searchIcon" (click)="openSearch()">
+          <a title="Search" class="searchIcon" (click)="openSearch()">
             <mat-icon>search</mat-icon>
           </a>
         </div>
@@ -61,4 +61,8 @@
         <textarea [(ngModel)]="searchcodets" class="code-editor"></textarea>
       </ng-template>
     </mat-card>
+    <h1>Pesquisar produtos</h1>
+    <p>Ao clicar no botão de pesquisa, abre uma lista com os itens da pesquisa.</p>
+
+
   </body>
