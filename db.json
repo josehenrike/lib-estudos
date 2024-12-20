@@ -26,7 +26,6 @@
   "CodeSearch": {
     "contentCodeSearch": ""
   },
-
   "dropdownCodeHtml": {
     "dropdownContentHtml": "<mat-form-field class=\"custom-field\" hideRequiredMarker=\"true\" appearance=\"outline\">\n  <mat-label></mat-label>\n  <mat-select [formControl]=\"prodControl\" required>\n    <mat-option *ngFor=\"let prod of products; trackBy: prod.id\" [value]=\"prod.id\">\n      {{ prod.name }}\n    </mat-option>\n  </mat-select>\n\n  <button *ngIf=\"prodControl.value\" mat-icon-button matSuffix class=\"clear-button\" (click)=\"clearSelection($event)\" aria-label=\"Clear selection\">\n    <mat-icon>clear</mat-icon>\n  </button>\n\n  <mat-error *ngIf=\"prodControl.hasError('required')\">Selecione um produto</mat-error>\n</mat-form-field>"
   },

@@ -59,3 +59,22 @@
   </mat-card>
   <h1>Pesquisar produtos</h1>
   <p>Ao clicar no botão de pesquisa, abre uma lista com os itens da pesquisa.</p>
+
+  <mat-card>
+    <div class="header-card">
+      <mat-card-content>Search html</mat-card-content>
+      <div class="icons">
+        <button class="edit" (click)="toggleEditModehtml()">
+          <mat-icon>{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="!isEditMode; else editMode">
+      <pre>
+        <code class="code-content">{{ searchcodehtml }}</code>
+      </pre>
+    </div>
+    <ng-template #editMode>
+      <textarea [(ngModel)]="searchcodehtml" class="code-editor"></textarea>
+    </ng-template>
+  </mat-card>
