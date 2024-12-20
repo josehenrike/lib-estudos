@@ -64,6 +64,7 @@ export class SearchComponent implements OnInit {
     this.loadCodeFromServer();
     this.loadCodeFromServerTs();
     this.loadProducts();
+    this.loadCodeFromServerOpenHtml();
 
     this.filteredProducts$ = this.searchControl.valueChanges.pipe(
       startWith(''),
@@ -80,13 +81,16 @@ export class SearchComponent implements OnInit {
   loadCodeFromServerTs() {
     this.productService.getTSCode().subscribe((response) => {
       this.searchcodets = response.contentCodeTs;
-      console.log('Código TS carregado do servidor:', this.searchcodets);
     });
   }
   loadCodeFromServer() {
     this.productService.getHtmlCode().subscribe((response) => {
       this.searchcodehtml = response.content;
-      console.log('Código HTML carregado do servidor:', this.searchcodehtml);
+    });
+  }
+  loadCodeFromServerOpenHtml() {
+    this.productService.getSearchCode().subscribe((response) => {
+      this.searchcodeOpenHtml = response.contentCodeSearch;
     });
   }
   loadProducts() {
@@ -100,7 +104,6 @@ export class SearchComponent implements OnInit {
 
     if (!this.isEditModets) {
       this.saveCodeToServerTs();
-      console.log('Código atualizado:', this.searchcodets);
     }
   }
   toggleEditModehtml() {
@@ -108,10 +111,15 @@ export class SearchComponent implements OnInit {
 
     if (!this.isEditMode) {
       this.saveCodeToServer();
-      console.log('Código atualizado:', this.searchcodehtml);
     }
   }
-  toggleEditModeOpenHtml() {}
+  toggleEditModeOpenHtml() {
+    this.isEditModeOpenHtml = !this.isEditModeOpenHtml;
+
+    if (!this.isEditModeOpenHtml) {
+      this.saveCodeToServerOpenHtml();
+    }
+  }
 
   filterProducts(searchTerm: string): Product[] {
     const lowerCaseTerm = searchTerm.toLowerCase();
@@ -125,22 +133,19 @@ export class SearchComponent implements OnInit {
     searchRef.afterClosed().subscribe((result: Product[]) => {
       if (result) {
         this.searchControl.setValue(result[0].name);
-        console.log('Dialog result:', result);
       }
     });
   }
 
   saveCodeToServerTs() {
-    this.productService.updateTsCode(this.searchcodets).subscribe(() => {
-      console.log('Código atualizado enviado ao servidor:', this.searchcodets);
-    });
+    this.productService.updateTsCode(this.searchcodets).subscribe(() => {});
   }
   saveCodeToServer() {
-    this.productService.updateHtmlCode(this.searchcodehtml).subscribe(() => {
-      console.log(
-        'Código atualizado enviado ao servidor:',
-        this.searchcodehtml
-      );
-    });
+    this.productService.updateHtmlCode(this.searchcodehtml).subscribe(() => {});
+  }
+  saveCodeToServerOpenHtml() {
+    this.productService
+      .updateSearchCode(this.searchcodeOpenHtml)
+      .subscribe(() => {});
   }
 }

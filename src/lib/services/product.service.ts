@@ -13,7 +13,7 @@ interface Product {
 export class ProductService {
   private apiUrl = 'http://localhost:3000/products';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl);
@@ -48,7 +48,7 @@ export class ProductService {
   }
   getSearchCode(): Observable<{ contentCodeSearch: string }> {
     return this.http.get<{ contentCodeSearch: string }>(
-      'http://localhost:3000/codeSearch'
+      'http://localhost:3000/CodeSearch'
     );
   }
   updateDropdownHtmlCode(dropdownCodeHtml: string): Observable<void> {
@@ -69,9 +69,9 @@ export class ProductService {
     });
   }
 
-  updateSearchCode(searchCode: string): Observable<void> {
-    return this.http.put<void>('http://localhost:3000/codeSearch', {
-      contentCodeSearch: searchCode,
+  updateSearchCode(CodeSearch: string): Observable<void> {
+    return this.http.put<void>('http://localhost:3000/CodeSearch', {
+      contentCodeSearch: CodeSearch,
     });
   }
 
