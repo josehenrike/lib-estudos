@@ -80,3 +80,23 @@
       <textarea [(ngModel)]="searchcodeOpenHtml" class="code-editor"></textarea>
     </ng-template>
   </mat-card>
+
+  <p>Logica do component utilizada ao abrir a pesquisa onde utiliza a logica de pesquisa tambem e é possivel selecionar o item que deseja e apos isso o valor retorna ao imput</p>
+  <mat-card>
+    <div class="header-card">
+      <mat-card-content>Open Search Ts</mat-card-content>
+      <div>
+        <button class="edit" (click)="toggleEditModeOpenTs()">
+          <mat-icon>{{ isEditModeOpenTs ? 'save' : 'edit' }}</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="!isEditModeOpenTs; else editModeopenTs">
+      <pre>
+        <code class="code-content">{{ searchcodeOpenTs }}</code>
+      </pre>
+    </div>
+    <ng-template #editModeopenTs>
+      <textarea [(ngModel)]="searchcodeOpenTs" class="code-editor"></textarea>
+    </ng-template>
+  </mat-card>

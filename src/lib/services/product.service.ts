@@ -51,6 +51,11 @@ export class ProductService {
       'http://localhost:3000/CodeSearch'
     );
   }
+  getSearchCodeOpenTs(): Observable<{ contentCodeSearchTs: string }> {
+    return this.http.get<{ contentCodeSearchTs: string }>(
+      'http://localhost:3000/codeSearchTs'
+    );
+  }
   updateDropdownHtmlCode(dropdownCodeHtml: string): Observable<void> {
     return this.http.put<void>('http://localhost:3000/dropdownCodeHtml', {
       dropdownContentHtml: dropdownCodeHtml,
@@ -72,6 +77,11 @@ export class ProductService {
   updateSearchCode(CodeSearch: string): Observable<void> {
     return this.http.put<void>('http://localhost:3000/CodeSearch', {
       contentCodeSearch: CodeSearch,
+    });
+  }
+  updateSearchCodeTs(codeSearchTs: string): Observable<void> {
+    return this.http.put<void>('http://localhost:3000/codeSearchTs', {
+      contentCodeSearchTs: codeSearchTs,
     });
   }
 

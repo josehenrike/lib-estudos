@@ -58,13 +58,17 @@ export class SearchComponent implements OnInit {
   isEditModeOpenHtml: boolean = false;
   searchcodeOpenHtml: string = ``;
 
+  isEditModeOpenTs: boolean = false;
+  searchcodeOpenTs: string = ``;
+
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
     this.loadCodeFromServer();
     this.loadCodeFromServerTs();
-    this.loadProducts();
     this.loadCodeFromServerOpenHtml();
+    this.loadCodeFromServerOpenTs();
+    this.loadProducts();
 
     this.filteredProducts$ = this.searchControl.valueChanges.pipe(
       startWith(''),
@@ -98,6 +102,11 @@ export class SearchComponent implements OnInit {
       this.products = data;
     });
   }
+  loadCodeFromServerOpenTs() {
+    this.productService.getSearchCodeOpenTs().subscribe((response) => {
+      this.searchcodeOpenTs = response.contentCodeSearchTs;
+    });
+  }
 
   toggleEditModets() {
     this.isEditModets = !this.isEditModets;
@@ -120,7 +129,13 @@ export class SearchComponent implements OnInit {
       this.saveCodeToServerOpenHtml();
     }
   }
+  toggleEditModeOpenTs() {
+    this.isEditModeOpenTs = !this.isEditModeOpenTs;
 
+    if (!this.isEditModeOpenTs) {
+      this.saveCodeToServerOpenTs();
+    }
+  }
   filterProducts(searchTerm: string): Product[] {
     const lowerCaseTerm = searchTerm.toLowerCase();
     return this.products.filter((product) => {
@@ -146,6 +161,11 @@ export class SearchComponent implements OnInit {
   saveCodeToServerOpenHtml() {
     this.productService
       .updateSearchCode(this.searchcodeOpenHtml)
+      .subscribe(() => {});
+  }
+  saveCodeToServerOpenTs() {
+    this.productService
+      .updateSearchCodeTs(this.searchcodeOpenTs)
       .subscribe(() => {});
   }
 }
