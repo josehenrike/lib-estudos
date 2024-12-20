@@ -91,7 +91,7 @@
     cursor: pointer;
 }
 
-.code-editor-button-html {
+.code-editor-button-ts {
     width: 700px;
     max-width: 100%;
     height: 222px;
@@ -100,6 +100,60 @@
     border: none;
     border-radius: 4px;
     padding: 8px;
+}
+
+.header-card-button-ts {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.icons-button-ts {
+    display: flex;
+}
+
+.edit-button-ts {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.code-editor-button-ts {
+    width: 700px;
+    max-width: 100%;
+    height: 222px;
+    font-family: monospace;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.code-editor-button-service {
+    width: 700px;
+    max-width: 100%;
+    height: 222px;
+    font-family: monospace;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.header-card-button-service {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.icons-button-service {
+    display: flex;
+}
+
+.edit-button-service {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 pre {

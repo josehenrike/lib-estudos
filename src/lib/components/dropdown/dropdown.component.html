@@ -121,4 +121,64 @@
         </mat-card>
     </div>
 
+    <div>
+        <p>É preciso utilizar o dialogRef no TypeScript para criar a caixa de diálogo onde irá ser passado as instruções
+            de Adicionar e Editar.</p>
+    </div>
+
+    <div class="codets-button">
+        <mat-card>
+            <div class="header-card-button-ts">
+                <mat-card-content>Exemplo no TypeScript</mat-card-content>
+                <div class="icons-button-ts">
+                    <button class="edit-button-ts" (click)="toggleEditModetsButton()">
+                        <mat-icon>{{ isEditModeButtonTs ? 'save' : 'edit' }}</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modo de Visualização -->
+            <div *ngIf="!isEditModeButtonTs; else editModeButtonTs">
+                <pre>
+                <code class="code-content-button-ts">{{ buttoncodets }}</code>
+            </pre>
+            </div>
+
+            <!-- Modo de Edição -->
+            <ng-template #editModeButtonTs>
+                <textarea [(ngModel)]="buttoncodets" class="code-editor-button-ts"></textarea>
+            </ng-template>
+        </mat-card>
+    </div>
+
+    <div>
+        <p>Para carregar os Produtos que estão no banco de dados e mostrar na lista, precisará utilizar o HttpClient
+            junto com o Service, do mesmo modo para adicionar e editar.</p>
+    </div>
+
+    <div class="codeservice-button">
+        <mat-card>
+            <div class="header-card-button-service">
+                <mat-card-content>Exemplo no Services</mat-card-content>
+                <div class="icons-button-service">
+                    <button class="edit-button-service" (click)="toggleEditModeserviceButton()">
+                        <mat-icon>{{ isEditModeButtonService ? 'save' : 'edit' }}</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modo de Visualização -->
+            <div *ngIf="!isEditModeButtonService; else editModeButtonService">
+                <pre>
+                <code class="code-content-button-service">{{ buttoncodeservice }}</code>
+            </pre>
+            </div>
+
+            <!-- Modo de Edição -->
+            <ng-template #editModeButtonService>
+                <textarea [(ngModel)]="buttoncodeservice" class="code-editor-button-service"></textarea>
+            </ng-template>
+        </mat-card>
+    </div>
+
 </div>
