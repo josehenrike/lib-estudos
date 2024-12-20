@@ -49,9 +49,13 @@ export class DropdownComponent implements OnInit {
   prodControl = new FormControl<Product | null>(null, Validators.required);
   selectFormControl = new FormControl(1, Validators.required);
   isEditMode: boolean = false;
+  isEditModeButton: boolean = false;
+  isEditModeButtonTs: boolean = false;
+  isEditModeButtonService: boolean = false;
   dropdowncodehtml: string = ``;
   buttoncodehtml: string = ``;
-  isEditModeButton: boolean = false;
+  buttoncodets: string = ``;
+  buttoncodeservice: string = ``;
 
   constructor(
     private productService: ProductService,
@@ -61,6 +65,8 @@ export class DropdownComponent implements OnInit {
   ngOnInit(): void {
     this.loadCodeFromServer();
     this.loadCodeFromServerButton();
+    this.loadCodeFromServerButtonTs();
+    this.loadCodeFromServerButtonService();
     this.productService.getProducts().subscribe((data) => {
       this.products = data;
     });
@@ -77,6 +83,20 @@ export class DropdownComponent implements OnInit {
     this.productService.getButtonHtmlCode().subscribe((response) => {
       this.buttoncodehtml = response.buttonContentHtml;
       console.log('Código HTML carregado do servidor:', this.buttoncodehtml);
+    });
+  }
+
+  loadCodeFromServerButtonTs() {
+    this.productService.getButtonTsCode().subscribe((response) => {
+      this.buttoncodets = response.buttonContentTs;
+      console.log('Código HTML carregado do servidor:', this.buttoncodets);
+    });
+  }
+
+  loadCodeFromServerButtonService() {
+    this.productService.getButtonServiceCode().subscribe((response) => {
+      this.buttoncodeservice = response.buttonContentService;
+      console.log('Código HTML carregado do servidor:', this.buttoncodeservice);
     });
   }
 
@@ -149,6 +169,42 @@ export class DropdownComponent implements OnInit {
       console.log(
         'Código atualizado enviado ao servidor:',
         this.buttoncodehtml
+      );
+    });
+  }
+
+  toggleEditModetsButton() {
+    this.isEditModeButtonTs = !this.isEditModeButtonTs;
+
+    if (!this.isEditModeButtonTs) {
+      this.saveCodeToServerTsButton();
+      console.log('Código atualizado:', this.buttoncodets);
+    }
+  }
+
+  saveCodeToServerTsButton() {
+    this.productService.updateButtonTsCode(this.buttoncodets,).subscribe(() => {
+      console.log(
+        'Código atualizado enviado ao servidor:',
+        this.buttoncodets
+      );
+    });
+  }
+
+  toggleEditModeserviceButton() {
+    this.isEditModeButtonService = !this.isEditModeButtonService;
+
+    if (!this.isEditModeButtonService) {
+      this.saveCodeToServerServiceButton();
+      console.log('Código atualizado:', this.buttoncodeservice);
+    }
+  }
+
+  saveCodeToServerServiceButton() {
+    this.productService.updateButtonServiceCode(this.buttoncodeservice,).subscribe(() => {
+      console.log(
+        'Código atualizado enviado ao servidor:',
+        this.buttoncodeservice
       );
     });
   }

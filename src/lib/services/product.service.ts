@@ -13,7 +13,7 @@ interface Product {
 export class ProductService {
   private apiUrl = 'http://localhost:3000/products';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl);
@@ -84,6 +84,30 @@ export class ProductService {
   getButtonHtmlCode(): Observable<{ buttonContentHtml: string }> {
     return this.http.get<{ buttonContentHtml: string }>(
       'http://localhost:3000/buttonCodeHtml'
+    );
+  }
+
+  updateButtonTsCode(buttonCodeTs: string): Observable<void> {
+    return this.http.put<void>('http://localhost:3000/buttonCodeTs', {
+      buttonContentTs: buttonCodeTs,
+    });
+  }
+
+  getButtonTsCode(): Observable<{ buttonContentTs: string }> {
+    return this.http.get<{ buttonContentTs: string }>(
+      'http://localhost:3000/buttonCodeTs'
+    );
+  }
+
+  updateButtonServiceCode(buttonCodeService: string): Observable<void> {
+    return this.http.put<void>('http://localhost:3000/buttonCodeService', {
+      buttonContentService: buttonCodeService,
+    });
+  }
+
+  getButtonServiceCode(): Observable<{ buttonContentService: string }> {
+    return this.http.get<{ buttonContentService: string }>(
+      'http://localhost:3000/buttonCodeService'
     );
   }
 }

@@ -31,5 +31,11 @@
   },
   "buttonCodeHtml": {
     "buttonContentHtml": "<div class=\"button-container\">\n  <button *ngIf=\"!prodControl.value\" mat-raised-button (click)=\"addOrUpdate()\">\n    <mat-icon>add</mat-icon>\n  </button>\n\n  <button *ngIf=\"prodControl.value\" mat-raised-button (click)=\"addOrUpdate()\">\n    <mat-icon>edit</mat-icon>\n  </button>\n</div>"
+  },
+  "buttonCodeTs": {
+    "buttonContentTs": "addOrUpdate(): void {\n  const selectedId = this.prodControl?.value ?? 0;\n  const selectedProduct = this.products.find(\n    (product) => product.id === selectedId\n  );\n\n  const dialogRef = this.dialog.open(DropdownDialogComponent, {\n    data: {\n      id: selectedId,\n      name: selectedProduct?.name ?? '',\n    },\n    width: '700px',\n  });\n\n  dialogRef.afterClosed().subscribe((result) => {\n    if (result) {\n      if (result.id > 0) {\n        this.productService.updateProduct(result).subscribe(() => {\n          const index = this.products.findIndex((p) => p.id === result.id);\n          if (index !== -1) {\n            this.products[index] = result;\n          }\n        });\n      } else {\n        this.productService.addProduct(result).subscribe((newProduct) => {\n          this.products.push(newProduct);\n        });\n      }\n    }\n  });\n}\n\nclearSelection(event: MouseEvent) {\n  event.stopPropagation();\n  this.prodControl.setValue(null);\n}"
+  },
+  "buttonCodeService": {
+    "buttonContentService": "export class ProductService {\n  private apiUrl = 'http://localhost:3000/products';\n\n  constructor(private http: HttpClient) { }\n\n  getProducts(): Observable<Product[]> {\n    return this.http.get<Product[]>(this.apiUrl);\n  }\n\n  addProduct(product: Product): Observable<Product> {\n    return this.http.post<Product>(this.apiUrl, product);\n  }\n\n  updateProduct(product: Product): Observable<Product> {\n    return this.http.put<Product>(`${this.apiUrl}/${product.id}`, product);\n  }\n}"
   }
 }
