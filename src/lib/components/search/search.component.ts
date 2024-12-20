@@ -55,6 +55,9 @@ export class SearchComponent implements OnInit {
   isEditModets: boolean = false;
   searchcodets: string = ``;
 
+  isEditModeOpenHtml: boolean = false;
+  searchcodeOpenHtml: string = ``;
+
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
@@ -108,6 +111,7 @@ export class SearchComponent implements OnInit {
       console.log('Código atualizado:', this.searchcodehtml);
     }
   }
+  toggleEditModeOpenHtml() {}
 
   filterProducts(searchTerm: string): Product[] {
     const lowerCaseTerm = searchTerm.toLowerCase();

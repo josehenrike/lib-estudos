@@ -60,21 +60,23 @@
   <h1>Pesquisar produtos</h1>
   <p>Ao clicar no botão de pesquisa, abre uma lista com os itens da pesquisa.</p>
 
+
+  <!-- editar para fazer o card -->
   <mat-card>
     <div class="header-card">
-      <mat-card-content>Search html</mat-card-content>
-      <div class="icons">
-        <button class="edit" (click)="toggleEditModehtml()">
-          <mat-icon>{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
+      <mat-card-content>Open Search</mat-card-content>
+      <div>
+        <button class="edit" (click)="toggleEditModeOpenHtml()">
+          <mat-icon>{{ isEditModeOpenHtml ? 'save' : 'edit' }}</mat-icon>
         </button>
       </div>
     </div>
-    <div *ngIf="!isEditMode; else editMode">
+    <div *ngIf="!isEditModeOpenHtml; else editModeopenhtml">
       <pre>
-        <code class="code-content">{{ searchcodehtml }}</code>
+        <code class="code-content">{{ searchcodeOpenHtml }}</code>
       </pre>
     </div>
-    <ng-template #editMode>
-      <textarea [(ngModel)]="searchcodehtml" class="code-editor"></textarea>
+    <ng-template #editModeopenhtml>
+      <textarea [(ngModel)]="searchcodeOpenHtml" class="code-editor"></textarea>
     </ng-template>
   </mat-card>
