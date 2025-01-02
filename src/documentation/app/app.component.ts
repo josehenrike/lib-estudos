@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     CommonModule,
     MatButtonModule,
     MatSidenavModule,
+    TourMatMenuModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
