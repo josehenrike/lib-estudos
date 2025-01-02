@@ -15,6 +15,7 @@ import { debounceTime, map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 
 export interface Product {
   name: string;
@@ -37,6 +38,7 @@ export interface Product {
     CommonModule,
     MatCardModule,
     MatTooltipModule,
+    TourMatMenuModule,
   ],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
