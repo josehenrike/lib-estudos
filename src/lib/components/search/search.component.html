@@ -1,20 +1,23 @@
 <body class="mat-margin">
 
-  <button mat-raised-button tourAnchor="start-button" color="primary" (click)="startTour()">Start Tour</button>
+  <button mat-raised-button color="primary" (click)="startTour()">Start Tour</button>
 
-  <h1>Search</h1>
-  <p>O Search é um componente de pesquisa que ao clicar no botão de pesquisa, abre uma lista com os itens da pesquisa.
-  <p>
-  <div>
-    <form class="searchForm">
-      <mat-form-field class="searchField" appearance="outline">
-        <div class="example-form">
-          <input matInput [formControl]="searchControl" />
-          <mat-icon class="searchIcon" (click)="openSearch()" matTooltip="Pesquisar">search</mat-icon>
-        </div>
-      </mat-form-field>
-    </form>
+  <div tourAnchor="start-button">
+    <h1>Search</h1>
+    <p>O Search é um componente de pesquisa que ao clicar no botão de pesquisa, abre uma lista com os itens da pesquisa.
+    <p>
+    <div>
+      <form class="searchForm">
+        <mat-form-field class="searchField" appearance="outline">
+          <div class="example-form">
+            <input matInput [formControl]="searchControl" />
+            <mat-icon class="searchIcon" (click)="openSearch()" matTooltip="Pesquisar">search</mat-icon>
+          </div>
+        </mat-form-field>
+      </form>
+    </div>
   </div>
+
   <h2>Construção</h2>
   <p>É utilizado o < mat-form-sield>, do material angular, para criar a barra de pesquisa junto com um input para captar os dados.</p>
 
