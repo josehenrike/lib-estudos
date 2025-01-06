@@ -1,5 +1,6 @@
 <body class="mat-margin">
-  <tour-step-template></tour-step-template>
+
+  <button mat-raised-button tourAnchor="start-button" color="primary" (click)="startTour()">Start Tour</button>
 
   <h1>Search</h1>
   <p>O Search é um componente de pesquisa que ao clicar no botão de pesquisa, abre uma lista com os itens da pesquisa.
@@ -101,3 +102,4 @@
       <textarea [(ngModel)]="searchcodeOpenTs" class="code-editor"></textarea>
     </ng-template>
   </mat-card>
+  <tour-step-template></tour-step-template>

@@ -15,7 +15,11 @@ import { debounceTime, map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
+import {
+  IStepOption,
+  TourMatMenuModule,
+  TourService,
+} from 'ngx-ui-tour-md-menu';
 
 export interface Product {
   name: string;
@@ -63,9 +67,25 @@ export class SearchComponent implements OnInit {
   isEditModeOpenTs: boolean = false;
   searchcodeOpenTs: string = ``;
 
+  private readonly tourService = inject(TourService);
+  private readonly steps: IStepOption[] = [
+    {
+      anchorId: 'start-button',
+      title: 'Search',
+      content: 'Search for a product',
+    },
+  ];
+
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
+    this.tourService.initialize(this.steps, {
+      enableBackdrop: true,
+      backdropConfig: {
+        offset: 10,
+      },
+    });
+
     this.loadCodeFromServer();
     this.loadCodeFromServerTs();
     this.loadCodeFromServerOpenHtml();
@@ -82,6 +102,10 @@ export class SearchComponent implements OnInit {
         return this.filterProducts(searchTerm);
       })
     );
+  }
+
+  startTour() {
+    this.tourService.start();
   }
 
   loadCodeFromServerTs() {
