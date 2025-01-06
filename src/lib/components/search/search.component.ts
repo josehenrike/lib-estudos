@@ -72,11 +72,24 @@ export class SearchComponent implements OnInit {
     {
       anchorId: 'start-button',
       title: 'Search',
-      content: 'Search for a product',
+      content:
+        'O Search é um componente de pesquisa que ao clicar no botão de pesquisa, abre uma lista com os itens da pesquisa.  Clique em sua lupa para ampliar a pesquisa',
+    },
+    {
+      anchorId: 'construction-content',
+      title: 'Search',
+      content:
+        'É utilizado o < mat-form-sield>, do material angular, para criar a barra de pesquisa junto com um input para captar os dados.',
+    },
+    {
+      anchorId: 'search-products',
+      title: 'Search Products',
+      content:
+        'Ao clicar no botão de pesquisa, abre uma lista com os itens da pesquisa.',
     },
   ];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
     this.tourService.initialize(this.steps, {
@@ -179,19 +192,19 @@ export class SearchComponent implements OnInit {
   }
 
   saveCodeToServerTs() {
-    this.productService.updateTsCode(this.searchcodets).subscribe(() => { });
+    this.productService.updateTsCode(this.searchcodets).subscribe(() => {});
   }
   saveCodeToServer() {
-    this.productService.updateHtmlCode(this.searchcodehtml).subscribe(() => { });
+    this.productService.updateHtmlCode(this.searchcodehtml).subscribe(() => {});
   }
   saveCodeToServerOpenHtml() {
     this.productService
       .updateSearchCode(this.searchcodeOpenHtml)
-      .subscribe(() => { });
+      .subscribe(() => {});
   }
   saveCodeToServerOpenTs() {
     this.productService
       .updateSearchCodeTs(this.searchcodeOpenTs)
-      .subscribe(() => { });
+      .subscribe(() => {});
   }
 }
