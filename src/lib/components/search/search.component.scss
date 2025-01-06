@@ -60,6 +60,10 @@ app-search {
   }
   .mat-mdc-raised-button:not(:disabled) {
     color: #ffffff;
+    background-color: #1969aa;
+  }
+  .mat-mdc-raised-button:not(:disabled):hover {
+    color: #ffffff;
     background-color: #005cbb;
   }
   pre {
