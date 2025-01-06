@@ -1,3 +1,5 @@
+<button mat-raised-button tourAnchor="tutorial-button" color="primary" (click)="startTour()">Tutorial</button>
+
 <div class="container">
 
     <div class="text-container-dropdown">
@@ -5,7 +7,8 @@
         <div class="initial-text">
             <p>Um dropdown é um elemento interativo de interface gráfica que permite ao usuário selecionar uma opção
                 dentre
-                várias disponíveis. Caso não tenha o que o usuário deseja, ele pode adicionar ou editar um produto.</p>
+                várias disponíveis. Caso não tenha o que o usuário deseja, ele pode adicionar ou editar um produto.
+            </p>
         </div>
 
         <div class="form-container">
@@ -36,16 +39,18 @@
             <!-- Button -->
             <div class="button-container">
                 @if (!prodControl.value) {
-                <button mat-raised-button (click)="addOrUpdate()"><mat-icon>add</mat-icon></button>
+                <button (click)="addOrUpdate()"><mat-icon>add</mat-icon></button>
                 }
 
                 @if (prodControl.value) {
-                <button mat-raised-button (click)="addOrUpdate()"><mat-icon>edit</mat-icon></button>
+                <button (click)="addOrUpdate()"><mat-icon>edit</mat-icon></button>
                 }
             </div>
 
         </div>
+    </div>
 
+    <div tourAnchor="selection-button">
         <div class="title-dropdown">
             <h2>Campo de Seleção</h2>
         </div>
@@ -56,7 +61,6 @@
             <p>O mat-select é uma solução pronta para criar dropdowns com diversas funcionalidades e integração
                 direta com o Angular.</p>
         </div>
-
     </div>
 
     <div class="codehtml-dropdown">
@@ -84,13 +88,14 @@
         </mat-card>
     </div>
 
-    <div class="button-text-container">
+    <div class="button-text-container" tourAnchor="addoredit-button">
         <div class="title-button">
             <h2>Botão de Adicionar ou Editar</h2>
         </div>
 
         <div class="text-button">
-            <p>Os botões de adicionar e editar podem ser usados para adicionar ou editar produtos no dropdown, caso o
+            <p>Os botões de adicionar e editar podem ser usados para adicionar ou editar produtos no dropdown, caso
+                o
                 usuário precise.</p>
         </div>
 
@@ -122,7 +127,8 @@
     </div>
 
     <div>
-        <p>É preciso utilizar o dialogRef no TypeScript para criar a caixa de diálogo onde irá ser passado as instruções
+        <p>É preciso utilizar o dialogRef no TypeScript para criar a caixa de diálogo onde irá ser passado as
+            instruções
             de Adicionar e Editar.</p>
     </div>
 
@@ -182,3 +188,4 @@
     </div>
 
 </div>
+<tour-step-template></tour-step-template>
