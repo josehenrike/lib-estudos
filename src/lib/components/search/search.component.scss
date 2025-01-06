@@ -54,6 +54,14 @@ app-search {
     padding: 8px;
   }
 
+  .button-start {
+    border-radius: 5px;
+    background-color: #1969aa;
+  }
+  .mat-mdc-raised-button:not(:disabled) {
+    color: #ffffff;
+    background-color: #005cbb;
+  }
   pre {
     display: flex;
     margin: 30px;
