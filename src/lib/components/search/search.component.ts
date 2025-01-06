@@ -76,7 +76,7 @@ export class SearchComponent implements OnInit {
     },
   ];
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
     this.tourService.initialize(this.steps, {
@@ -179,19 +179,19 @@ export class SearchComponent implements OnInit {
   }
 
   saveCodeToServerTs() {
-    this.productService.updateTsCode(this.searchcodets).subscribe(() => {});
+    this.productService.updateTsCode(this.searchcodets).subscribe(() => { });
   }
   saveCodeToServer() {
-    this.productService.updateHtmlCode(this.searchcodehtml).subscribe(() => {});
+    this.productService.updateHtmlCode(this.searchcodehtml).subscribe(() => { });
   }
   saveCodeToServerOpenHtml() {
     this.productService
       .updateSearchCode(this.searchcodeOpenHtml)
-      .subscribe(() => {});
+      .subscribe(() => { });
   }
   saveCodeToServerOpenTs() {
     this.productService
       .updateSearchCodeTs(this.searchcodeOpenTs)
-      .subscribe(() => {});
+      .subscribe(() => { });
   }
 }

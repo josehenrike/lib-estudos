@@ -1,5 +1,5 @@
 // Angular
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Angular Material
@@ -7,6 +7,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import {
+  IStepOption,
+  TourMatMenuModule,
+  TourService,
+} from 'ngx-ui-tour-md-menu';
 
 // Local
 import { DropdownDialogComponent } from './dropdowndialog/dropdowndialog.component';
@@ -33,36 +41,71 @@ interface Product {
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatMenuModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
+    MatTooltipModule,
+    TourMatMenuModule
   ],
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss',
-  providers: [ProductService],
+  providers: [ProductService]
 })
+
 export class DropdownComponent implements OnInit {
   products: any[] = [];
   prodControl = new FormControl<Product | null>(null, Validators.required);
   selectFormControl = new FormControl(1, Validators.required);
+
   isEditMode: boolean = false;
   isEditModeButton: boolean = false;
+
   isEditModeButtonTs: boolean = false;
   isEditModeButtonService: boolean = false;
+
   dropdowncodehtml: string = ``;
   buttoncodehtml: string = ``;
+
   buttoncodets: string = ``;
   buttoncodeservice: string = ``;
+
+  private readonly tourService = inject(TourService);
+  private readonly steps: IStepOption[] = [
+    {
+      anchorId: 'tutorial-button',
+      title: 'Bem vindo ao Tutorial',
+      content: 'Iremos fazer um tour de como utilizar o componente dropdown',
+    },
+    {
+      anchorId: 'selection-button',
+      title: 'Campo de Seleção',
+      content: 'O campo de seleção serve para selecionar um produto existente.',
+    },
+    {
+      anchorId: 'addoredit-button',
+      title: 'Adicionar/Editar',
+      content: 'O botão de adicionar/editar serve para adicionar ou editar um produto.',
+    },
+  ];
 
   constructor(
     private productService: ProductService,
     public dialog: MatDialog
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.tourService.initialize(this.steps, {
+      enableBackdrop: true,
+      backdropConfig: {
+        offset: 10,
+      },
+    });
+
     this.loadCodeFromServer();
     this.loadCodeFromServerButton();
     this.loadCodeFromServerButtonTs();
@@ -70,6 +113,11 @@ export class DropdownComponent implements OnInit {
     this.productService.getProducts().subscribe((data) => {
       this.products = data;
     });
+
+  }
+
+  startTour() {
+    this.tourService.start();
   }
 
   loadCodeFromServer() {
