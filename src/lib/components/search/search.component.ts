@@ -49,26 +49,7 @@ export interface Product {
   encapsulation: ViewEncapsulation.None,
 })
 export class SearchComponent implements OnInit {
-  products: Product[] = [];
-  searchControl = new FormControl();
-  filteredProducts$!: Observable<Product[]>;
-  selectedProduct: Product | null = null;
-  readonly search = inject(MatDialog);
-
-  isEditMode: boolean = false;
-  searchcodehtml: string = ``;
-
-  isEditModets: boolean = false;
-  searchcodets: string = ``;
-
-  isEditModeOpenHtml: boolean = false;
-  searchcodeOpenHtml: string = ``;
-
-  isEditModeOpenTs: boolean = false;
-  searchcodeOpenTs: string = ``;
-
-  private readonly tourService = inject(TourService);
-  private readonly steps: IStepOption[] = [
+  steps: IStepOption[] = [
     {
       anchorId: 'start-button',
       title: 'Search',
@@ -89,15 +70,55 @@ export class SearchComponent implements OnInit {
     },
   ];
 
+  products: Product[] = [];
+  searchControl = new FormControl();
+  filteredProducts$!: Observable<Product[]>;
+  selectedProduct: Product | null = null;
+  readonly search = inject(MatDialog);
+
+  isEditMode: boolean = false;
+  searchcodehtml: string = ``;
+
+  isEditModets: boolean = false;
+  searchcodets: string = ``;
+
+  isEditModeOpenHtml: boolean = false;
+  searchcodeOpenHtml: string = ``;
+
+  isEditModeOpenTs: boolean = false;
+  searchcodeOpenTs: string = ``;
+
+  // private readonly tourService = inject(TourService);
+  // private readonly steps: IStepOption[] = [
+  //   {
+  //     anchorId: 'start-button',
+  //     title: 'Search',
+  //     content:
+  //       'O Search é um componente de pesquisa que ao clicar no botão de pesquisa, abre uma lista com os itens da pesquisa.  Clique em sua lupa para ampliar a pesquisa',
+  //   },
+  //   {
+  //     anchorId: 'construction-content',
+  //     title: 'Search',
+  //     content:
+  //       'É utilizado o < mat-form-sield>, do material angular, para criar a barra de pesquisa junto com um input para captar os dados.',
+  //   },
+  //   {
+  //     anchorId: 'search-products',
+  //     title: 'Search Products',
+  //     content:
+  //       'Ao clicar no botão de pesquisa, abre uma lista com os itens da pesquisa.',
+  //   },
+  // ];
+
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    this.tourService.initialize(this.steps, {
-      enableBackdrop: true,
-      backdropConfig: {
-        offset: 10,
-      },
-    });
+    // this.tourService.initialize(this.steps, {
+    //   enableBackdrop: true,
+    //   backdropConfig: {
+    //     offset: 10,
+    //   },
+    // });
 
     this.loadCodeFromServer();
     this.loadCodeFromServerTs();
@@ -118,7 +139,7 @@ export class SearchComponent implements OnInit {
   }
 
   startTour() {
-    this.tourService.start();
+    // this.tourService.start();
   }
 
   loadCodeFromServerTs() {
