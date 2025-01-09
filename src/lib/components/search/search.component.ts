@@ -20,6 +20,7 @@ import {
   TourMatMenuModule,
   TourService,
 } from 'ngx-ui-tour-md-menu';
+import { SearchTourComponent } from '../search-tour/search-tour.component';
 
 export interface Product {
   name: string;
@@ -43,6 +44,7 @@ export interface Product {
     MatCardModule,
     MatTooltipModule,
     TourMatMenuModule,
+    SearchTourComponent,
   ],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
@@ -88,38 +90,9 @@ export class SearchComponent implements OnInit {
   isEditModeOpenTs: boolean = false;
   searchcodeOpenTs: string = ``;
 
-  // private readonly tourService = inject(TourService);
-  // private readonly steps: IStepOption[] = [
-  //   {
-  //     anchorId: 'start-button',
-  //     title: 'Search',
-  //     content:
-  //       'O Search é um componente de pesquisa que ao clicar no botão de pesquisa, abre uma lista com os itens da pesquisa.  Clique em sua lupa para ampliar a pesquisa',
-  //   },
-  //   {
-  //     anchorId: 'construction-content',
-  //     title: 'Search',
-  //     content:
-  //       'É utilizado o < mat-form-sield>, do material angular, para criar a barra de pesquisa junto com um input para captar os dados.',
-  //   },
-  //   {
-  //     anchorId: 'search-products',
-  //     title: 'Search Products',
-  //     content:
-  //       'Ao clicar no botão de pesquisa, abre uma lista com os itens da pesquisa.',
-  //   },
-  // ];
-
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    // this.tourService.initialize(this.steps, {
-    //   enableBackdrop: true,
-    //   backdropConfig: {
-    //     offset: 10,
-    //   },
-    // });
-
     this.loadCodeFromServer();
     this.loadCodeFromServerTs();
     this.loadCodeFromServerOpenHtml();
@@ -136,10 +109,6 @@ export class SearchComponent implements OnInit {
         return this.filterProducts(searchTerm);
       })
     );
-  }
-
-  startTour() {
-    // this.tourService.start();
   }
 
   loadCodeFromServerTs() {

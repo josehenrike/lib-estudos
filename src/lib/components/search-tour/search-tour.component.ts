@@ -3,7 +3,16 @@ import { IStepOption, TourService } from 'ngx-ui-tour-md-menu';
 
 @Component({
   selector: 'app-search-tour',
-  templateUrl: './search-tour.component.html',
+  template: `
+    <button
+      mat-raised-button
+      class="button-start"
+      color="primary"
+      (click)="startTour()"
+    >
+      Start Tour
+    </button>
+  `,
   styleUrls: ['./search-tour.component.scss'],
 })
 export class SearchTourComponent implements OnInit {

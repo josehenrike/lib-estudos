@@ -57,12 +57,15 @@ app-search {
   .button-start {
     border-radius: 5px;
     background-color: #1969aa;
+    color: #ffffff;
+    padding: 15px;
+    border: none;
   }
   .mat-mdc-raised-button:not(:disabled) {
     color: #ffffff;
     background-color: #1969aa;
   }
-  .mat-mdc-raised-button:not(:disabled):hover {
+  .button-start:hover {
     color: #ffffff;
     background-color: #005cbb;
   }
