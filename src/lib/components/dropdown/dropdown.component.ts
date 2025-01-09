@@ -10,11 +10,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
-import {
-  IStepOption,
-  TourMatMenuModule,
-  TourService,
-} from 'ngx-ui-tour-md-menu';
 
 // Local
 import { DropdownDialogComponent } from './dropdowndialog/dropdowndialog.component';
@@ -28,6 +23,8 @@ import {
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { IStepOption, TourMatMenuModule, TourService } from 'ngx-ui-tour-md-menu';
+import { DropdownTourComponent } from "./dropdown-tour/dropdown-tour.component";
 
 interface Product {
   id: number;
@@ -50,7 +47,8 @@ interface Product {
     MatCardModule,
     MatButtonModule,
     MatTooltipModule,
-    TourMatMenuModule
+    TourMatMenuModule,
+    DropdownTourComponent
   ],
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss',
@@ -58,24 +56,7 @@ interface Product {
 })
 
 export class DropdownComponent implements OnInit {
-  products: any[] = [];
-  prodControl = new FormControl<Product | null>(null, Validators.required);
-  selectFormControl = new FormControl(1, Validators.required);
-
-  isEditMode: boolean = false;
-  isEditModeButton: boolean = false;
-
-  isEditModeButtonTs: boolean = false;
-  isEditModeButtonService: boolean = false;
-
-  dropdowncodehtml: string = ``;
-  buttoncodehtml: string = ``;
-
-  buttoncodets: string = ``;
-  buttoncodeservice: string = ``;
-
-  private readonly tourService = inject(TourService);
-  private readonly steps: IStepOption[] = [
+  steps: IStepOption[] = [
     {
       anchorId: 'tutorial-button',
       title: 'Bem vindo ao Tutorial',
@@ -93,19 +74,28 @@ export class DropdownComponent implements OnInit {
     },
   ];
 
+  products: any[] = [];
+  prodControl = new FormControl<Product | null>(null, Validators.required);
+  selectFormControl = new FormControl(1, Validators.required);
+
+  isEditMode: boolean = false;
+  isEditModeButton: boolean = false;
+
+  isEditModeButtonTs: boolean = false;
+  isEditModeButtonService: boolean = false;
+
+  dropdowncodehtml: string = ``;
+  buttoncodehtml: string = ``;
+
+  buttoncodets: string = ``;
+  buttoncodeservice: string = ``;
+
   constructor(
     private productService: ProductService,
     public dialog: MatDialog
   ) { }
 
   ngOnInit() {
-    this.tourService.initialize(this.steps, {
-      enableBackdrop: true,
-      backdropConfig: {
-        offset: 10,
-      },
-    });
-
     this.loadCodeFromServer();
     this.loadCodeFromServerButton();
     this.loadCodeFromServerButtonTs();
@@ -113,11 +103,6 @@ export class DropdownComponent implements OnInit {
     this.productService.getProducts().subscribe((data) => {
       this.products = data;
     });
-
-  }
-
-  startTour() {
-    this.tourService.start();
   }
 
   loadCodeFromServer() {

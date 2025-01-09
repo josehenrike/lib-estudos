@@ -1,9 +1,8 @@
-<button class="button-start" mat-flat-button tourAnchor="tutorial-button" color="primary"
-    (click)="startTour()">Tutorial</button>
+<app-dropdown-tour [steps]="steps"></app-dropdown-tour>
 
 <div class="container">
 
-    <div class="text-container-dropdown">
+    <div class="text-container-dropdown" tourAnchor="tutorial-button">
 
         <div class="initial-text">
             <p>Um dropdown é um elemento interativo de interface gráfica que permite ao usuário selecionar uma opção

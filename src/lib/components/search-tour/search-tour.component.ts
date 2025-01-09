@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IStepOption, TourService } from 'ngx-ui-tour-md-menu';
 
+
 @Component({
   selector: 'app-search-tour',
   templateUrl: './search-tour.component.html',
@@ -9,7 +10,7 @@ import { IStepOption, TourService } from 'ngx-ui-tour-md-menu';
 export class SearchTourComponent implements OnInit {
   @Input() steps: IStepOption[] = [];
 
-  constructor(private readonly tourService: TourService) {}
+  constructor(private readonly tourService: TourService) { }
 
   ngOnInit() {
     if (this.steps && this.steps.length > 0) {
